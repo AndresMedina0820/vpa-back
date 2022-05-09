@@ -6,7 +6,7 @@ const cors = require('cors');
 
 app.use(express.json())
 
-const whiteList = ['http://localhost:3000/'];
+const whiteList = ['http://localhost:3000/', 'https://vpa-back.herokuapp.com/'];
 const options = {
 	origin: (origin, callback) => {
 		if (whiteList.includes(origin) || !origin) {
