@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3004;
+const port = 3000;
 const routerApi = require('./routes');
 
 app.use(express.json())
