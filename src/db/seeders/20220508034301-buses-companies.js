@@ -25,12 +25,12 @@ module.exports = {
 			"license_plate": "76237-176",
 			"capacity": 25,
 			"companyId": 0,
-			"created_at": "19/12/2021"
+			"created_at": "02/03/2022"
 		}, {
 			"license_plate": "51655-561",
 			"capacity": 35,
 			"companyId": 0,
-			"created_at": "19/11/2021"
+			"created_at": "02/03/2022"
 		}, {
 			"license_plate": "51531-9480",
 			"capacity": 22,
@@ -45,27 +45,27 @@ module.exports = {
 			"license_plate": "0113-4368",
 			"capacity": 28,
 			"companyId": 0,
-			"created_at": "28/06/2021"
+			"created_at": "02/03/2022"
 		}, {
 			"license_plate": "13668-024",
 			"capacity": 28,
 			"companyId": 1,
-			"created_at": "05/10/2021"
+			"created_at": "02/03/2022"
 		}, {
 			"license_plate": "68599-0202",
 			"capacity": 30,
 			"companyId": 2,
-			"created_at": "29/12/2021"
+			"created_at": "02/03/2022"
 		}, {
 			"license_plate": "10191-1201",
 			"capacity": 36,
 			"companyId": 0,
-			"created_at": "14/03/2022"
+			"created_at": "02/03/2022"
 		}, {
 			"license_plate": "52380-0540",
 			"capacity": 26,
 			"companyId": 1,
-			"created_at": "10/03/2022"
+			"created_at": "02/03/2022"
 		}]);
 	},
 
