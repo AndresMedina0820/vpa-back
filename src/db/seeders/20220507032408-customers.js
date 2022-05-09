@@ -13,7 +13,7 @@ module.exports = {
 			"phone": "540-779-1848",
 			"city": "Smínthi",
 			"address": "95 Debra Center",
-			"created_at": "04/09/2021",
+			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 0
 		}, {
@@ -26,7 +26,7 @@ module.exports = {
 			"phone": "173-745-0904",
 			"city": "Akkol",
 			"address": "5 Pankratz Park",
-			"created_at": "10/05/2021",
+			"created_at": "09/05/2022",
 			"type_id": 0,
 			"customer_type": 1
 		},
@@ -40,7 +40,7 @@ module.exports = {
 			"phone": "798-567-5210",
 			"city": "Skrzyszów",
 			"address": "28 Mitchell Terrace",
-			"created_at": "19/02/2022",
+			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 1
 		}, {
@@ -53,7 +53,7 @@ module.exports = {
 			"phone": "994-732-5873",
 			"city": "Saint-Ouen",
 			"address": "7532 Hauk Pass",
-			"created_at": "03/02/2022",
+			"created_at": "09/05/2022",
 			"type_id": 0,
 			"customer_type": 1
 		}, {
@@ -66,7 +66,7 @@ module.exports = {
 			"phone": "201-636-0493",
 			"city": "Taipinghu",
 			"address": "37 Steensland Pass",
-			"created_at": "03/06/2021",
+			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 0
 		}, {
@@ -79,7 +79,7 @@ module.exports = {
 			"phone": "367-317-1982",
 			"city": "Seredka",
 			"address": "6613 Del Mar Way",
-			"created_at": "07/08/2021",
+			"created_at": "09/05/2022",
 			"type_id": 1,
 			"customer_type": 1
 		}, {
@@ -92,7 +92,7 @@ module.exports = {
 			"phone": "987-654-7946",
 			"city": "Ārt Khwājah",
 			"address": "1 8th Place",
-			"created_at": "03/12/2021",
+			"created_at": "09/05/2022",
 			"type_id": 0,
 			"customer_type": 0
 		}, {
@@ -105,7 +105,7 @@ module.exports = {
 			"phone": "173-758-3783",
 			"city": "Opatówek",
 			"address": "7 Badeau Way",
-			"created_at": "16/03/2022",
+			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 1
 		}, {
@@ -118,7 +118,7 @@ module.exports = {
 			"phone": "421-774-3878",
 			"city": "Vilar",
 			"address": "6 West Trail",
-			"created_at": "16/04/2022",
+			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 1
 		}, {
@@ -131,7 +131,7 @@ module.exports = {
 			"phone": "421-982-5127",
 			"city": "Pasrūr",
 			"address": "2 Florence Lane",
-			"created_at": "30/01/2022",
+			"created_at": "09/05/2022",
 			"type_id": 1,
 			"customer_type": 1
 		}]);
