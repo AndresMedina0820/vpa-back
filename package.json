@@ -36,7 +36,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "heroku": "^7.60.2",
     "nodemon": "^2.0.16",
-    "prettier": "^2.6.2",
-	"sequelize-cli": "^6.4.1"
+    "prettier": "^2.6.2"
   }
 }
