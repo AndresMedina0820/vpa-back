@@ -12,6 +12,6 @@ console.log(port);
 app.listen(port);
 
 app.get('/', (request, response) => {
-	response.send('Hola soy goku');
+	response.send('API REST VPA');
 });
 
