@@ -5,8 +5,6 @@ const routerApi = require('./routes');
 
 app.use(express.json())
 
-app.use(cors(options));
-
 routerApi(app);
 console.log(port);
 app.listen(port);
