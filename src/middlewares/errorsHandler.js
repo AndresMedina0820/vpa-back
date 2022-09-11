@@ -12,7 +12,7 @@ function errorHandler(err, request, response, next) {
 }
 
 function boomErrorHandler(err, request, response, next) {
-	console.log('boomErrorHandler');
+	console.log('boomErrorHandler', err);
 	if (err.isBoom) {
 		const { statusCode, payload } = err.output;
 		response.status(statusCode).json(payload)

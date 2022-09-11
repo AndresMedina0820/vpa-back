@@ -1,18 +1,18 @@
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
 
-class CustomersService {
+class TravelsService {
 	constructor() {}
 
 	async find() {
 		try {
-			const customers = await models.Customer.findAll({
-				include: ['type_id', 'customer_type'],
-				order: [
-					['id', 'DESC']
-				]
+			const travels = await models.Travel.findAll({
+				// include: ['type_id', 'customer_type'],
+				// order: [
+				// 	['id', 'DESC']
+				// ]
 			});
-			return customers;
+			return travels;
 		} catch (error) {
 			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
 		}
@@ -20,13 +20,13 @@ class CustomersService {
 
 	async findOne(id) {
 		try {
-			const customer = await models.Customer.findByPk(id, {
-				include: ['type_id', 'customer_type']
+			const travel = await models.Travel.findByPk(id, {
+				// include: ['type_id', 'customer_type']
 			});
-			if (!customer) {
-				throw boom.notFound('Customer not found');
+			if (!travel) {
+				throw boom.notFound('Travel not found');
 			}
-			return customer;
+			return travel;
 		} catch (error) {
 			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
 		}
@@ -34,7 +34,7 @@ class CustomersService {
 
 	async create(data) {
 		try {
-			const resp = await models.Customer.create(data);
+			const resp = await models.Travel.create(data);
 			return resp;
 		} catch (error) {
 			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
@@ -43,9 +43,9 @@ class CustomersService {
 
 	async update(id, changes) {
 		try {
-			const customer = await this.findOne(id);
-			await customer.update(changes);
-			return customer;
+			const travel = await this.findOne(id);
+			await travel.update(changes);
+			return travel;
 		} catch (error) {
 			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
 		}
@@ -53,8 +53,8 @@ class CustomersService {
 
 	async delete(id) {
 		try {
-			const customer = await this.findOne(id);
-			await customer.destroy();
+			const travel = await this.findOne(id);
+			await travel.destroy();
 			return { id };
 		} catch (error) {
 			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
@@ -62,4 +62,4 @@ class CustomersService {
 	}
 }
 
-module.exports = CustomersService;
+module.exports = TravelsService;
