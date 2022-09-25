@@ -1,8 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { TRAVELS_DESTINATION_TABLE, TravelsDestination } = require ('./travelsDestinationModel');
-const { BUS_TABLE, Bus } = require ('./busModel');
-const { PRICES_TABLE, Prices } = require ('./pricesModel');
-const { TravelsPriceXTravel } = require('./travelsPriceXTravelModel');
+const { TRAVELS_DESTINATION_TABLE } = require ('./travelsDestinationModel');
+const { BUS_TABLE } = require ('./busModel');
 
 const TRAVEL_TABLE = 'travels';
 
@@ -56,16 +54,6 @@ const TravelSchema = {
 		allowNull: true,
 		type: DataTypes.BLOB
 	},
-	// priceId: {
-	// 	allowNull: false,
-	// 	type: DataTypes.INTEGER,
-	// 	field: 'price_id',
-	// 	references: {
-	// 		model: `PRICES_TABLE`
-	// 	},
-	// 	onUpdate: 'CASCADE',
-	// 	onDelete: 'SET NULL'
-	// },
 	createdAt: {
 		allowNull: false,
 		type: DataTypes.DATE,
@@ -80,20 +68,18 @@ const TravelSchema = {
 }
 
 class Travel extends Model {
-	static associate() {
-		this.belongsTo(TravelsDestination, {
-			foreignKey: 'destinationId',
-			as: 'destination_id'
-		});
-		this.belongsTo(Bus, {
+	static associate(models) {
+		this.belongsTo(models.Bus, {
 			foreignKey: 'busId',
-			as: 'bus_id'
+			as: 'bus'
 		});
-		this.belongsToMany(Prices, {
+		this.belongsTo(models.TravelsDestination, {
+			foreignKey: 'destinationId',
+			as: 'destination'
+		});
+		this.hasMany(models.Prices, {
 			as: 'prices',
-			through: TravelsPriceXTravel,
-			foreignKey: 'travelId',
-			otherKey: 'priceId'
+			foreignKey: 'travelId'
 		});
 	}
 

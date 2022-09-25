@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { COMPANY_TABLE, Company } = require('./companyModel');
+const { COMPANY_TABLE } = require('./busCompanyModel');
 
 const BUS_TABLE = 'buses';
 
@@ -45,8 +45,8 @@ const BusSchema = {
 }
 
 class Bus extends Model {
-	static associate() {
-		this.belongsTo(Company, {
+	static associate(models) {
+		this.belongsTo(models.Company, {
 			foreignKey: 'companyId',
 			as: 'company'
 		})

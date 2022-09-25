@@ -3,7 +3,7 @@
 const { CUSTOMER_TABLE, CustomerSchema } = require('../models/customerModel');
 const { USER_TABLE, UserSchema } = require('../models/userModel');
 const { BUS_TABLE, BusSchema } = require('../models/busModel');
-const { COMPANY_TABLE, CompanySchema } = require('../models/companyModel');
+const { COMPANY_TABLE, CompanySchema } = require('../models/busCompanyModel');
 const { TYPE_ID_TABLE, TypeIdSchema } = require('../models/typeIdModel');
 const { CUSTOMER_TYPE_TABLE, CustomerTypeSchema } = require('../models/customerTypeModel');
 const { ROLE_TABLE, RoleSchema } = require('../models/roleModel');

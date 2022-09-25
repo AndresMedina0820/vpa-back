@@ -24,7 +24,7 @@ class Company extends Model {
 		return {
 			sequelize,
 			tableName: COMPANY_TABLE,
-			modelName: 'User',
+			modelName: 'Company',
 			timestamps: false
 		}
 	}

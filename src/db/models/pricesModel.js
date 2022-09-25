@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { PRICES_TYPE_TABLE, PricesType } = require('./pricesTypeModel');
+const { PRICES_TYPE_TABLE } = require('./pricesTypeModel');
+const { TRAVEL_TABLE } = require('./travelModel');
 
 const PRICES_TABLE = 'prices';
 
@@ -16,6 +17,17 @@ const PricesSchema = {
 		field: 'price_type_id',
 		references: {
 			model: PRICES_TYPE_TABLE,
+			key: 'id'
+		},
+		onUpdate: 'CASCADE',
+		onDelete: 'SET NULL'
+	},
+	travelId: {
+		allowNull: false,
+		type: DataTypes.INTEGER,
+		field: 'travel_id',
+		references: {
+			model: TRAVEL_TABLE,
 			key: 'id'
 		},
 		onUpdate: 'CASCADE',
@@ -41,10 +53,13 @@ const PricesSchema = {
 }
 
 class Prices extends Model {
-	static associate() {
-		this.belongsTo(PricesType, {
+	static associate(models) {
+		this.belongsTo(models.PricesType, {
 			foreignKey: 'priceTypeId',
-			as: 'price_type_id'
+			as: 'price_type'
+		});
+		this.belongsTo(models.Travel, {
+			as: 'travel'
 		});
 	}
 

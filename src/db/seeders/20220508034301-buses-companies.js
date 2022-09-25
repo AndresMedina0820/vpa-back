@@ -1,7 +1,7 @@
 'use strict';
 
 const { BUS_TABLE } = require('../models/busModel');
-const { COMPANY_TABLE } = require('../models/companyModel');
+const { COMPANY_TABLE } = require('../models/busCompanyModel');
 
 module.exports = {
 	async up (queryInterface) {

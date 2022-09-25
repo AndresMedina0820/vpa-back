@@ -24,7 +24,7 @@ class PricesTypeService {
 				// include: ['type_id', 'customer_type']
 			});
 			if (!priceType) {
-				throw boom.notFound('Price Type type not found');
+				throw boom.notFound('Price type not found');
 			}
 			return priceType;
 		} catch (error) {

@@ -55,8 +55,8 @@ class TravelsPriceXTravel extends Model {
 	static config(sequelize) {
 		return {
 			sequelize,
-			tableName: USER_TABLE,
-			modelName: 'User',
+			tableName: TRAVELS_PRICESXTRAVEL_TABLE,
+			modelName: 'TravelsPriceXTravel',
 			timestamps: false
 		}
 	}

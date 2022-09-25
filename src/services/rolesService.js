@@ -1,13 +1,13 @@
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
 
-class PricesService {
+class RoleService {
 	constructor() {}
 
 	async find() {
 		try {
-			const prices = await models.Prices.findAll();
-			return prices;
+			const roles = await models.Role.findAll();
+			return roles;
 		} catch (error) {
 			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
 		}
@@ -15,13 +15,11 @@ class PricesService {
 
 	async findOne(id) {
 		try {
-			const price = await models.Prices.findByPk(id, {
-				include: ['price_type', 'travel'],
-			});
-			if (!price) {
-				throw boom.notFound('Price not found');
+			const role = await models.Role.findByPk(id);
+			if (!role) {
+				throw boom.notFound('Role not found');
 			}
-			return price;
+			return role;
 		} catch (error) {
 			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
 		}
@@ -29,7 +27,7 @@ class PricesService {
 
 	async create(data) {
 		try {
-			const resp = await models.Prices.create(data);
+			const resp = await models.Role.create(data);
 			return resp;
 		} catch (error) {
 			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
@@ -38,9 +36,9 @@ class PricesService {
 
 	async update(id, changes) {
 		try {
-			const price = await this.findOne(id);
-			await price.update(changes);
-			return price;
+			const role = await this.findOne(id);
+			await role.update(changes);
+			return role;
 		} catch (error) {
 			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
 		}
@@ -48,8 +46,8 @@ class PricesService {
 
 	async delete(id) {
 		try {
-			const price = await this.findOne(id);
-			await price.destroy();
+			const role = await this.findOne(id);
+			await role.destroy();
 			return { id };
 		} catch (error) {
 			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
@@ -57,4 +55,4 @@ class PricesService {
 	}
 }
 
-module.exports = PricesService;
+module.exports = RoleService;

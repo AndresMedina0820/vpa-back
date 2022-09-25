@@ -7,10 +7,33 @@ class TravelsService {
 	async find() {
 		try {
 			const travels = await models.Travel.findAll({
-				// include: ['type_id', 'customer_type'],
-				// order: [
-				// 	['id', 'DESC']
-				// ]
+				include: [
+					{
+						model: models.Bus,
+						as: 'bus',
+						attributes: ['licensePlate', 'capacity'],
+						include: {
+							model: models.Company,
+							as: 'company',
+							attributes: ['name']
+						}
+					},
+					{
+						model: models.TravelsDestination,
+						as: 'destination',
+						attributes: ['name']
+					},
+					{
+						model: models.Prices,
+						as: 'prices',
+						attributes: ['value'],
+						include: {
+							model: models.PricesType,
+							as: 'price_type',
+							attributes: ['name', 'seatAvailable']
+						}
+					}
+				],
 			});
 			return travels;
 		} catch (error) {
@@ -21,7 +44,33 @@ class TravelsService {
 	async findOne(id) {
 		try {
 			const travel = await models.Travel.findByPk(id, {
-				// include: ['type_id', 'customer_type']
+				include: [
+					{
+						model: models.Bus,
+						as: 'bus',
+						attributes: ['licensePlate', 'capacity'],
+						include: {
+							model: models.Company,
+							as: 'company',
+							attributes: ['name']
+						}
+					},
+					{
+						model: models.TravelsDestination,
+						as: 'destination',
+						attributes: ['name']
+					},
+					{
+						model: models.Prices,
+						as: 'prices',
+						attributes: ['value'],
+						include: {
+							model: models.PricesType,
+							as: 'price_type',
+							attributes: ['name', 'seatAvailable']
+						}
+					}
+				],
 			});
 			if (!travel) {
 				throw boom.notFound('Travel not found');

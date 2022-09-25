@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { TYPE_ID_TABLE, TypeId } = require('./typeIdModel');
-const { ROLE_TABLE, Role } = require('./roleModel');
+const { TYPE_ID_TABLE } = require('./typeIdModel');
+const { ROLE_TABLE } = require('./roleModel');
 
 const USER_TABLE = 'users';
 
@@ -75,12 +75,12 @@ const UserSchema = {
 }
 
 class User extends Model {
-	static associate() {
-		this.belongsTo(TypeId, {
+	static associate(models) {
+		this.belongsTo(models.TypeId, {
 			foreignKey: 'typeId',
 			as: 'type_id'
 		});
-		this.belongsTo(Role, {
+		this.belongsTo(models.Role, {
 			foreignKey: 'roleId',
 			as: 'role'
 		});

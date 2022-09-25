@@ -23,7 +23,7 @@ class TravelsDestination extends Model {
 	static config(sequelize) {
 		return {
 			sequelize,
-			tableName: TRAVEL_DESTINATION_TABLE,
+			tableName: TRAVELS_DESTINATION_TABLE,
 			modelName: 'TravelsDestination',
 			timestamps: false
 		}

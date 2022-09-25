@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { TYPE_ID_TABLE, TypeId } = require('./typeIdModel');
-const { CUSTOMER_TYPE_TABLE, CustomerType } = require('../models/customerTypeModel');
+const { TYPE_ID_TABLE } = require('./typeIdModel');
+const { CUSTOMER_TYPE_TABLE } = require('../models/customerTypeModel');
 
 const CUSTOMER_TABLE = 'customers';
 
@@ -89,12 +89,12 @@ const CustomerSchema = {
 }
 
 class Customer extends Model {
-	static associate() {
-		this.belongsTo(TypeId, {
+	static associate(models) {
+		this.belongsTo(models.TypeId, {
 			foreignKey: 'typeId',
 			as: 'type_id'
 		});
-		this.belongsTo(CustomerType, {
+		this.belongsTo(models.CustomerType, {
 			foreignKey: 'customerType',
 			as: 'customer_type'
 		});

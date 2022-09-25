@@ -31,7 +31,7 @@ module.exports = {
 		"name": 'Tour Antioquia',
 		"destination_id": 1,
 		"departure_date": '12/11/2022',
-		"bus_id": 0,
+		"bus_id": 1,
 		"departure_location": 'Estadio',
 		"observations": 'Llevar Almuerzos',
 		"picture": null,
