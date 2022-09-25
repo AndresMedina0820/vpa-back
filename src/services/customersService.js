@@ -14,7 +14,7 @@ class CustomersService {
 			});
 			return customers;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -24,11 +24,11 @@ class CustomersService {
 				include: ['type_id', 'customer_type']
 			});
 			if (!customer) {
-				throw boom.notFound('Customer not found');
+				throw boom.notFound('Cliente no encontrado');
 			}
 			return customer;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -37,7 +37,7 @@ class CustomersService {
 			const resp = await models.Customer.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -47,7 +47,7 @@ class CustomersService {
 			await customer.update(changes);
 			return customer;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -57,7 +57,7 @@ class CustomersService {
 			await customer.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }

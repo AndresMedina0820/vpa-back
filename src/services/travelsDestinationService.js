@@ -6,15 +6,10 @@ class TravelsDestinationService {
 
 	async find() {
 		try {
-			const destinations = await models.TravelsDestination.findAll({
-				// include: ['type_id', 'customer_type'],
-				// order: [
-				// 	['id', 'DESC']
-				// ]
-			});
+			const destinations = await models.TravelsDestination.findAll();
 			return destinations;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -23,11 +18,11 @@ class TravelsDestinationService {
 			const destination = await models.TravelsDestination.findByPk(id);
 			console.log("destination: ", destination, typeof destination)
 			if (!destination) {
-				throw boom.notFound('Destination not found');
+				throw boom.notFound('Destino no encontrado');
 			}
 			return destination;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -36,7 +31,7 @@ class TravelsDestinationService {
 			const resp = await models.TravelsDestination.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -46,7 +41,7 @@ class TravelsDestinationService {
 			await destination.update(changes);
 			return destination;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -56,7 +51,7 @@ class TravelsDestinationService {
 			await destination.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }

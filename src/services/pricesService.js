@@ -9,7 +9,7 @@ class PricesService {
 			const prices = await models.Prices.findAll();
 			return prices;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -19,11 +19,11 @@ class PricesService {
 				include: ['price_type', 'travel'],
 			});
 			if (!price) {
-				throw boom.notFound('Price not found');
+				throw boom.notFound('Precio no encontrado');
 			}
 			return price;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -32,7 +32,7 @@ class PricesService {
 			const resp = await models.Prices.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -42,7 +42,7 @@ class PricesService {
 			await price.update(changes);
 			return price;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -52,7 +52,7 @@ class PricesService {
 			await price.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }

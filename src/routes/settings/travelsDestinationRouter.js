@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createTravelsDestinationSchema, 'body'), async
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('Destination created!');
+		response.status(201).json('¡Destino creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updateTravelsDestinationSchema, 'params'),
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('Destination updated!');
+		response.status(201).json('¡Destino actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deleteTravelsDestinationSchema, 'params')
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('Destination deleted!');
+		response.status(201).json('¡Destino eliminado!');
 	} catch (error) {
 		next(error);
 	}

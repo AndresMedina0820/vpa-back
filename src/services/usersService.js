@@ -14,7 +14,7 @@ class UsersService {
 			});
 			return users;
 		} catch (error) {
-			throw boom.clientTimeout(`Client Timeout: ${error?.original?.detail}`);
+			throw boom.clientTimeout(`Conexión fallida: ${error?.original?.detail}`);
 		}
 	}
 
@@ -24,11 +24,11 @@ class UsersService {
 				include: ['type_id', 'role']
 			});
 			if (!user) {
-				return boom.notFound('User not found');
+				return boom.notFound('Usuario no encontrado');
 			}
 			return user;
 		} catch (error) {
-			throw boom.clientTimeout(`Client Timeout: ${error?.original?.detail}`);
+			throw boom.clientTimeout(`Conexión fallida: ${error?.original?.detail}`);
 		}
 	}
 
@@ -37,7 +37,7 @@ class UsersService {
 			const response = await models.User.create(data);
 			return response;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed:  ${error?.original?.detail}`);
+			throw boom.failedDependency(`Creación fallida:  ${error?.original?.detail}`);
 		}
 	}
 
@@ -47,7 +47,7 @@ class UsersService {
 			await user.update(changes);
 			return user;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -57,7 +57,7 @@ class UsersService {
 			await user.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }

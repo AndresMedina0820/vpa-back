@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createTypeCustomerSchema, 'body'), async (requ
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('Type Customer created!');
+		response.status(201).json('¡Tipo de cliente creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updateTypeCustomerSchema, 'params'), async
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('Type Customer updated!');
+		response.status(201).json('¡Tipo de cliente actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deleteTypeCustomerSchema, 'params'), asyn
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('Type Customer deleted!');
+		response.status(201).json('¡Tipo de cliente eliminado!');
 	} catch (error) {
 		next(error);
 	}

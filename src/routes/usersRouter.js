@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createUserSchema, 'body'), async (request, res
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('user created!');
+		response.status(201).json('¡Usuario creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updateUserSchema, 'params'), async (reques
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('user updated!');
+		response.status(201).json('¡Usuario actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deleteUserSchema, 'params'), async (reque
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('user deleted!');
+		response.status(201).json('¡Usuario eliminado!');
 	} catch (error) {
 		next(error);
 	}

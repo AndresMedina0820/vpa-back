@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createTravelsSchema, 'body'), async (request, 
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('Travel created!');
+		response.status(201).json('¡Viaje creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updateTravelsSchema, 'params'), async (req
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('Travel updated!');
+		response.status(201).json('¡Viaje actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deleteTravelsSchema, 'params'), async (re
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('Travel deleted!');
+		response.status(201).json('¡Viaje eliminado!');
 	} catch (error) {
 		next(error);
 	}

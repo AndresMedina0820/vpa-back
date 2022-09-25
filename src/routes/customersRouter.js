@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createCustomerSchema, 'body'), async (request,
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('customer created!');
+		response.status(201).json('¡Cliente creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updateCustomerSchema, 'params'), async (re
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('customer updated!');
+		response.status(201).json('¡Cliente actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deleteCustomerSchema, 'params'), async (r
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('customer deleted!');
+		response.status(201).json('¡Cliente eliminado!');
 	} catch (error) {
 		next(error);
 	}

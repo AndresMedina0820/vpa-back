@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createPricesTypeSchema, 'body'), async (reques
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('Prices type created!');
+		response.status(201).json('¡Tipo de Precio creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updatePricesTypeSchema, 'params'), async (
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('Prices type updated!');
+		response.status(201).json('¡Tipo de Precio actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deletePricesTypeSchema, 'params'), async 
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('Prices type deleted!');
+		response.status(201).json('¡Tipo de Precio eliminado!');
 	} catch (error) {
 		next(error);
 	}

@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createBusSchema, 'body'), async (request, resp
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('bus created!');
+		response.status(201).json('¡Bus creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updateBusSchema, 'params'), async (request
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('bus updated!');
+		response.status(201).json('¡Bus actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deleteBusSchema, 'params'), async (reques
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('bus deleted!');
+		response.status(201).json('¡Bus eliminado!');
 	} catch (error) {
 		next(error);
 	}

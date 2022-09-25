@@ -37,7 +37,7 @@ class TravelsService {
 			});
 			return travels;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -73,11 +73,11 @@ class TravelsService {
 				],
 			});
 			if (!travel) {
-				throw boom.notFound('Travel not found');
+				throw boom.notFound('Viaje no encontrado');
 			}
 			return travel;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -86,7 +86,7 @@ class TravelsService {
 			const resp = await models.Travel.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -96,7 +96,7 @@ class TravelsService {
 			await travel.update(changes);
 			return travel;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -106,7 +106,7 @@ class TravelsService {
 			await travel.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }

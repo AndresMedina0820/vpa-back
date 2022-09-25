@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createPricesSchema, 'body'), async (request, r
 	try {
 		const { body } = request;
 		await service.create(body);
-		response.status(201).json('Price created!');
+		response.status(201).json('¡Precio creado!');
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +36,7 @@ router.patch('/:id', validatorHandler(updatePricesSchema, 'params'), async (requ
 		const { id } = request.params;
 		const { body } = request;
 		await service.update(id, body);
-		response.status(201).json('Price updated!');
+		response.status(201).json('¡Precio actualizado!');
 	} catch (error) {
 		next(error);
 	}
@@ -46,7 +46,7 @@ router.delete('/:id', validatorHandler(deletePricesSchema, 'params'), async (req
 	try {
 		const { id } = request.params;
 		await service.delete(id);
-		response.status(201).json('Price deleted!');
+		response.status(201).json('¡Precio eliminado!');
 	} catch (error) {
 		next(error);
 	}

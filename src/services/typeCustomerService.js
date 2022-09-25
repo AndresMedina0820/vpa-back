@@ -9,7 +9,7 @@ class TypeCustomerService {
 			const types = await models.CustomerType.findAll();
 			return types;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -17,11 +17,11 @@ class TypeCustomerService {
 		try {
 			const type = await models.CustomerType.findByPk(id);
 			if (!type) {
-				throw boom.notFound('Type Customer not found');
+				throw boom.notFound('Tipo de cliente no encontrado');
 			}
 			return type;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -30,7 +30,7 @@ class TypeCustomerService {
 			const resp = await models.CustomerType.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -40,7 +40,7 @@ class TypeCustomerService {
 			await type.update(changes);
 			return type;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -50,7 +50,7 @@ class TypeCustomerService {
 			await type.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }

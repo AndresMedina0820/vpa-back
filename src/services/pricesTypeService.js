@@ -14,7 +14,7 @@ class PricesTypeService {
 			});
 			return pricesType;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -24,11 +24,11 @@ class PricesTypeService {
 				// include: ['type_id', 'customer_type']
 			});
 			if (!priceType) {
-				throw boom.notFound('Price type not found');
+				throw boom.notFound('Tipo de precio no encontrado');
 			}
 			return priceType;
 		} catch (error) {
-			throw boom.clientTimeout(`Fail Connection:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
 		}
 	}
 
@@ -37,7 +37,7 @@ class PricesTypeService {
 			const resp = await models.PricesType.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Created Failed: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -47,7 +47,7 @@ class PricesTypeService {
 			await priceType.update(changes);
 			return priceType;
 		} catch (error) {
-			throw boom.badRequest(`Updated Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
 		}
 	}
 
@@ -57,7 +57,7 @@ class PricesTypeService {
 			await priceType.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Delete Failed: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
 		}
 	}
 }
