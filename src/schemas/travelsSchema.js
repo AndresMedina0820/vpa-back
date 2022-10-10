@@ -3,31 +3,31 @@ const Joi = require("joi");
 const id = Joi.number().integer();
 const name = Joi.string().max(255);
 const destinationId = Joi.number().integer();
-const departure_date = Joi.date();
+const departureDate = Joi.date();
 const busId = Joi.number().integer();
-const departure_location = Joi.string();
+const departureLocation = Joi.string();
 const observations = Joi.string();
 const picture = Joi.string();
 
 const createTravelsSchema = Joi.object({
 	name: name.required(),
 	destinationId: destinationId.required(),
-	departure_date: departure_date.required(),
+	departureDate: departureDate.required(),
 	busId: busId.required(),
-	departure_location: departure_location.required(),
+	departureLocation: departureLocation.required(),
 	observations: observations,
-	picture: picture
+	picture: picture,
 });
 
 const updateTravelsSchema = Joi.object({
 	id: id.required(),
 	name: name,
 	destinationId: destinationId,
-	departure_date: departure_date,
+	departureDate: departureDate,
 	busId: busId,
-	departure_location: departure_location,
+	departureLocation: departureLocation,
 	observations: observations,
-	picture: picture
+	picture: picture,
 });
 
 const deleteTravelsSchema = Joi.object({
@@ -38,11 +38,11 @@ const getTravelsSchema = Joi.object({
 	id: id,
 	name: name,
 	destinationId: destinationId,
-	departure_date: departure_date,
+	departureDate: departureDate,
 	busId: busId,
-	departure_location: departure_location,
+	departureLocation: departureLocation,
 	observations: observations,
-	picture: picture
+	picture: picture,
 });
 
 module.exports = {

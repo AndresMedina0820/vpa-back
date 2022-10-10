@@ -3,8 +3,11 @@ const router = express.Router();
 const travelsServices = require('../services/travelsService');
 const validatorHandler = require('../middlewares/validatorHandler');
 const { createTravelsSchema, deleteTravelsSchema, getTravelsSchema, updateTravelsSchema } = require('../schemas/travelsSchema');
+const PricesService = require("../services/pricesService");
 
 const service = new travelsServices();
+const servicePrice = new PricesService();
+// const postPrices = new pricesPost.post();
 
 router.get('/' ,async (request, response) => {
 	const travels = await service.find();
@@ -24,8 +27,10 @@ router.get('/:id', validatorHandler(getTravelsSchema, 'params'), async (request,
 router.post('/', validatorHandler(createTravelsSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('¡Viaje creado!');
+		await service.create(body)
+		.then((res) => {
+			response.status(201).json([res.id, '¡Viaje creado correctamente!']);
+		});
 	} catch (error) {
 		next(error);
 	}
@@ -35,8 +40,10 @@ router.patch('/:id', validatorHandler(updateTravelsSchema, 'params'), async (req
 	try {
 		const { id } = request.params;
 		const { body } = request;
-		await service.update(id, body);
-		response.status(201).json('¡Viaje actualizado!');
+		await service.update(id, body)
+		.then((res) => {
+			response.status(201).json([res.id,'¡Viaje actualizado!']);
+		});
 	} catch (error) {
 		next(error);
 	}

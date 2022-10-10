@@ -1,5 +1,6 @@
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
+const { pricesService } = require('../services/pricesService')
 
 class TravelsService {
 	constructor() {}
@@ -11,27 +12,17 @@ class TravelsService {
 					{
 						model: models.Bus,
 						as: 'bus',
-						attributes: ['licensePlate', 'capacity'],
+						attributes: ['id', 'licensePlate', 'capacity'],
 						include: {
 							model: models.Company,
 							as: 'company',
-							attributes: ['name']
+							attributes: ['id', 'name'],
 						}
 					},
 					{
 						model: models.TravelsDestination,
 						as: 'destination',
-						attributes: ['name']
-					},
-					{
-						model: models.Prices,
-						as: 'prices',
-						attributes: ['value'],
-						include: {
-							model: models.PricesType,
-							as: 'price_type',
-							attributes: ['name', 'seatAvailable']
-						}
+						attributes: ['id','name']
 					}
 				],
 			});
@@ -48,27 +39,17 @@ class TravelsService {
 					{
 						model: models.Bus,
 						as: 'bus',
-						attributes: ['licensePlate', 'capacity'],
+						attributes: ['id', 'licensePlate', 'capacity'],
 						include: {
 							model: models.Company,
 							as: 'company',
-							attributes: ['name']
+							attributes: ['id', 'name']
 						}
 					},
 					{
 						model: models.TravelsDestination,
 						as: 'destination',
-						attributes: ['name']
-					},
-					{
-						model: models.Prices,
-						as: 'prices',
-						attributes: ['value'],
-						include: {
-							model: models.PricesType,
-							as: 'price_type',
-							attributes: ['name', 'seatAvailable']
-						}
+						attributes: ['id', 'name']
 					}
 				],
 			});
@@ -86,7 +67,7 @@ class TravelsService {
 			const resp = await models.Travel.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida:`, error);
 		}
 	}
 

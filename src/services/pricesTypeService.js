@@ -6,12 +6,7 @@ class PricesTypeService {
 
 	async find() {
 		try {
-			const pricesType = await models.PricesType.findAll({
-				// include: ['type_id', 'customer_type'],
-				// order: [
-				// 	['id', 'DESC']
-				// ]
-			});
+			const pricesType = await models.PricesType.findAll();
 			return pricesType;
 		} catch (error) {
 			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
@@ -20,9 +15,7 @@ class PricesTypeService {
 
 	async findOne(id) {
 		try {
-			const priceType = await models.PricesType.findByPk(id, {
-				// include: ['type_id', 'customer_type']
-			});
+			const priceType = await models.PricesType.findByPk(id);
 			if (!priceType) {
 				throw boom.notFound('Tipo de precio no encontrado');
 			}

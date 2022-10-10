@@ -19,8 +19,8 @@ function routerApi(app) {
 	router.use('/customers', customersRouter);
 	router.use('/users', usersRouter);
 	router.use('/buses', busesRouter);
-	router.use('/prices', pricesRouter);
 	router.use('/travels', travelsRouter);
+	router.use('/travels/', pricesRouter);
 	router.use('/settings/travels/destinations', travelsDestinationRouter);
 	router.use('/settings/buses/companies', busesCompanyRouter);
 	router.use('/settings/types/prices', pricesTypeRouter);

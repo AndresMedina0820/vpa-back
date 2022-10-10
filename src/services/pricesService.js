@@ -6,7 +6,41 @@ class PricesService {
 
 	async find() {
 		try {
-			const prices = await models.Prices.findAll();
+			const prices = await models.Prices.findAll({
+				include: [
+					{
+						model: models.PricesType,
+						as: 'price_type',
+						attributes: ['id', 'name', 'seatAvailable'],
+					},
+					{
+						model: models.Travel,
+						as: 'travel',
+						attributes: ['id','name']
+					}
+				],
+			});
+			return prices;
+		} catch (error) {
+			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+		}
+	}
+
+	async findByTravel(travelId) {
+		console.log(travelId);
+		try {
+			const prices = await models.Prices.findAll({
+				where: {
+					travelId: travelId
+				},
+				include: [
+					{
+						model: models.PricesType,
+						as: 'price_type',
+						attributes: ['id', 'name', 'seatAvailable'],
+					}
+				],
+			});
 			return prices;
 		} catch (error) {
 			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
@@ -16,23 +50,37 @@ class PricesService {
 	async findOne(id) {
 		try {
 			const price = await models.Prices.findByPk(id, {
-				include: ['price_type', 'travel'],
+				order: [
+					['id', 'DESC']
+				],
+				include: [
+					{
+						model: models.PricesType,
+						as: 'price_type',
+						attributes: ['id', 'name', 'seatAvailable'],
+					},
+					{
+						model: models.Travel,
+						as: 'travel',
+						attributes: ['id','name']
+					}
+				],
 			});
 			if (!price) {
 				throw boom.notFound('Precio no encontrado');
 			}
 			return price;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail}`);
 		}
 	}
 
 	async create(data) {
 		try {
-			const resp = await models.Prices.create(data);
-			return resp;
+			const res = await models.Prices.create(data);
+			return res;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error}`);
 		}
 	}
 
