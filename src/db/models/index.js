@@ -9,6 +9,7 @@ const { TravelsDestination, TravelsDestinationSchema } = require('./travelsDesti
 const { PricesType, PricesTypeSchema } = require('./pricesTypeModel');
 const { Prices, PricesSchema } = require('./pricesModel');
 const { Travel, TravelSchema } = require('./travelModel');
+const { Booking, BookingSchema } = require('./bookingModel');
 
 function setupModels(sequelize_connection) {
 	// Initials
@@ -23,6 +24,7 @@ function setupModels(sequelize_connection) {
 	PricesType.init(PricesTypeSchema, PricesType.config(sequelize_connection));
 	Travel.init(TravelSchema, Travel.config(sequelize_connection));
 	Prices.init(PricesSchema, Prices.config(sequelize_connection));
+	Booking.init(BookingSchema, Booking.config(sequelize_connection));
 
 	// Associations
 	Customer.associate(sequelize_connection.models);
@@ -30,6 +32,7 @@ function setupModels(sequelize_connection) {
 	Bus.associate(sequelize_connection.models);
 	Travel.associate(sequelize_connection.models);
 	Prices.associate(sequelize_connection.models);
+	Booking.associate(sequelize_connection.models);
 }
 
 module.exports = setupModels;

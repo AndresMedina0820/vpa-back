@@ -4,6 +4,7 @@ const usersRouter = require('./usersRouter');
 const busesRouter = require('./busesRouter');
 const pricesRouter = require('./pricesRouter');
 const travelsRouter = require('./travelsRouter');
+const bookingsRouter = require('./bookingsRouter');
 
 // Settings
 const travelsDestinationRouter = require('./settings/travelsDestinationRouter');
@@ -21,6 +22,7 @@ function routerApi(app) {
 	router.use('/buses', busesRouter);
 	router.use('/travels', travelsRouter);
 	router.use('/travels/', pricesRouter);
+	router.use('/bookings', bookingsRouter);
 	router.use('/settings/travels/destinations', travelsDestinationRouter);
 	router.use('/settings/buses/companies', busesCompanyRouter);
 	router.use('/settings/types/prices', pricesTypeRouter);

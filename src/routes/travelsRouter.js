@@ -6,8 +6,6 @@ const { createTravelsSchema, deleteTravelsSchema, getTravelsSchema, updateTravel
 const PricesService = require("../services/pricesService");
 
 const service = new travelsServices();
-const servicePrice = new PricesService();
-// const postPrices = new pricesPost.post();
 
 router.get('/' ,async (request, response) => {
 	const travels = await service.find();
