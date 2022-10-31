@@ -24,7 +24,7 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-const port = process.env.PORT || 3004
+const port = process.env.PORT || 3005
 app.listen(port, () => {
 	console.log("Port: ", port)
 });
