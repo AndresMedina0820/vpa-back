@@ -26,13 +26,13 @@ module.exports = {
 	await queryInterface.bulkInsert(PRICES_TABLE, [{
 		"id": 0,
 		"price_type_id": 0,
-		"travel_id": 0,
+		"travel_id": 1,
 		"value": 90000,
 		"created_at": "02/03/2022",
 	}, {
 		"id": 1,
 		"price_type_id": 2,
-		"travel_id": 0,
+		"travel_id": 1,
 		"value": 50000,
 		"created_at": "02/03/2022",
   	}]);

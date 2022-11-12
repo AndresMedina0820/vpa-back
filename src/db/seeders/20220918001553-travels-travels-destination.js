@@ -6,30 +6,30 @@ const { TRAVEL_TABLE } = require('../models/travelModel');
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert(TRAVELS_DESTINATION_TABLE, [{
-		id: 0,
+		id: 1,
 		name: 'Consota'
 	}, {
-		id: 1,
+		id: 2,
 		name: 'Medellin'
 	}, {
-		id: 2,
+		id: 3,
 		name: 'Salento'
 	}]);
 
 	await queryInterface.bulkInsert(TRAVEL_TABLE, [{
-		"id": 0,
+		"id": 1,
 		"name": 'Pasadia Consota',
-		"destination_id": 0,
+		"destination_id": 1,
 		"departure_date": '12/12/2022',
-		"bus_id": 2,
+		"bus_id": 1,
 		"departure_location": 'Estadio',
 		"observations": 'Llevar cupones',
 		"picture": null,
 		"created_at": "02/03/2022",
 	}, {
-		"id": 1,
+		"id": 2,
 		"name": 'Tour Antioquia',
-		"destination_id": 1,
+		"destination_id": 2,
 		"departure_date": '12/11/2022',
 		"bus_id": 1,
 		"departure_location": 'Estadio',

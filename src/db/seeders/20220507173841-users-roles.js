@@ -120,7 +120,7 @@ module.exports = {
 	},
 
 	async down (queryInterface) {
-		await queryInterface.bulkDelete(ROLE_TABLE, null, {});
 		await queryInterface.bulkDelete(USER_TABLE, null, {});
+		await queryInterface.bulkDelete(ROLE_TABLE, null, {});
 	}
 };

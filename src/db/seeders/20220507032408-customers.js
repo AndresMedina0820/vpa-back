@@ -15,7 +15,8 @@ module.exports = {
 			"address": "95 Debra Center",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 0
+			"customer_type": 0,
+			"in_booking": null
 		}, {
 			"customer_id": 393547,
 			"name": "Dylan",
@@ -28,7 +29,8 @@ module.exports = {
 			"address": "5 Pankratz Park",
 			"created_at": "09/05/2022",
 			"type_id": 0,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		},
 		{
 			"customer_id": 981060,
@@ -42,7 +44,8 @@ module.exports = {
 			"address": "28 Mitchell Terrace",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		}, {
 			"customer_id": 85828,
 			"name": "Loren",
@@ -55,7 +58,8 @@ module.exports = {
 			"address": "7532 Hauk Pass",
 			"created_at": "09/05/2022",
 			"type_id": 0,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		}, {
 			"customer_id": 754670,
 			"name": "Heidie",
@@ -68,7 +72,8 @@ module.exports = {
 			"address": "37 Steensland Pass",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 0
+			"customer_type": 0,
+			"in_booking": null
 		}, {
 			"customer_id": 314858,
 			"name": "Richy",
@@ -81,7 +86,8 @@ module.exports = {
 			"address": "6613 Del Mar Way",
 			"created_at": "09/05/2022",
 			"type_id": 1,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		}, {
 			"customer_id": 246716,
 			"name": "Stacee",
@@ -94,7 +100,8 @@ module.exports = {
 			"address": "1 8th Place",
 			"created_at": "09/05/2022",
 			"type_id": 0,
-			"customer_type": 0
+			"customer_type": 0,
+			"in_booking": null
 		}, {
 			"customer_id": 352757,
 			"name": "Gwynne",
@@ -107,7 +114,8 @@ module.exports = {
 			"address": "7 Badeau Way",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		}, {
 			"customer_id": 270937,
 			"name": "Lazar",
@@ -120,7 +128,8 @@ module.exports = {
 			"address": "6 West Trail",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		}, {
 			"customer_id": 614830,
 			"name": "Rachelle",
@@ -133,7 +142,8 @@ module.exports = {
 			"address": "2 Florence Lane",
 			"created_at": "09/05/2022",
 			"type_id": 1,
-			"customer_type": 1
+			"customer_type": 1,
+			"in_booking": null
 		}]);
 	},
 

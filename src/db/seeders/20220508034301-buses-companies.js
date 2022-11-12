@@ -70,7 +70,7 @@ module.exports = {
 	},
 
 	async down (queryInterface) {
-		await queryInterface.bulkDelete(COMPANY_TABLE, null, {});
 		await queryInterface.bulkDelete(BUS_TABLE, null, {});
+		await queryInterface.bulkDelete(COMPANY_TABLE, null, {});
 	}
 };
