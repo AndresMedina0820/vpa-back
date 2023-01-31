@@ -6,25 +6,25 @@ const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/err
 
 app.use(express.json())
 
+listWhite = ['http://localhost:3001', 'http://127.0.0.1:5173']
+
+// Config
 const options = {
-    origin:'http://localhost:3001',
+    origin: listWhite,
     credentials:true,
     optionSuccessStatus:200
 }
 app.use(cors(options));
 
-app.get('/', (request, response) => {
-	response.send('API REST VPA');
+const port = process.env.PORT || 3005
+app.listen(port, () => {
+	console.log("Port: ", port)
 });
 
+// Routes
 routerApi(app);
 
 // Middlewares
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
-
-const port = process.env.PORT || 3005
-app.listen(port, () => {
-	console.log("Port: ", port)
-});
