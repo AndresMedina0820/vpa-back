@@ -9,7 +9,7 @@ class BusesCompanyService {
 			const companies = await models.Company.findAll();
 			return companies;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -21,7 +21,7 @@ class BusesCompanyService {
 			}
 			return company;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -30,7 +30,7 @@ class BusesCompanyService {
 			const resp = await models.Company.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -40,7 +40,7 @@ class BusesCompanyService {
 			await company.update(changes);
 			return company;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -50,7 +50,7 @@ class BusesCompanyService {
 			await company.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 }

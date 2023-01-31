@@ -9,7 +9,7 @@ class TypeCustomerService {
 			const types = await models.CustomerType.findAll();
 			return types;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -21,7 +21,7 @@ class TypeCustomerService {
 			}
 			return type;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -30,7 +30,7 @@ class TypeCustomerService {
 			const resp = await models.CustomerType.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -40,7 +40,7 @@ class TypeCustomerService {
 			await type.update(changes);
 			return type;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -50,7 +50,7 @@ class TypeCustomerService {
 			await type.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 }

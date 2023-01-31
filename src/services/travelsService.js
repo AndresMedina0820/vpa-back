@@ -28,7 +28,7 @@ class TravelsService {
 			});
 			return travels;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -58,7 +58,7 @@ class TravelsService {
 			}
 			return travel;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -77,7 +77,7 @@ class TravelsService {
 			await travel.update(changes);
 			return travel;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -87,7 +87,7 @@ class TravelsService {
 			await travel.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 }

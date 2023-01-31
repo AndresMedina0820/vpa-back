@@ -1,31 +1,30 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { TRAVEL_TABLE } = require('./travelModel');
-const {CUSTOMER_TABLE } = require('./customerModel')
+const { CUSTOMER_TABLE } = require('./customerModel')
 
-const BOOKING_CUSTOMERS_TABLE = 'booking_customers';
+const COMPANIONS_X_CUSTOMERS_TABLE = 'companions_x_customers';
 
-const BookingCustomersSchema = {
+const CompanionsXCustomersSchema = {
 	id: {
 		allowNull: false,
 		autoIncrement: true,
 		primaryKey: true,
 		type: DataTypes.INTEGER
 	},
-	travelId: {
+	customerId: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		field: 'travel_id',
+		field: 'customer_id',
 		references: {
-			model: TRAVEL_TABLE,
+			model: CUSTOMER_TABLE,
 			key: 'id'
 		},
 		onUpdate: 'CASCADE',
 		onDelete: 'SET NULL'
 	},
-	customerId: {
+	companionId: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		field: 'customer_id',
+		field: 'companion_id',
 		references: {
 			model: CUSTOMER_TABLE,
 			key: 'id'
@@ -46,27 +45,27 @@ const BookingCustomersSchema = {
 	}
 }
 
-class BookingCustomers extends Model {
+class CompanionsXCustomers extends Model {
 	static associate(models) {
-		this.belongsTo(models.Travel, {
-			foreignKey: 'travelId',
-			as: 'travel'
-		});
 		this.belongsTo(models.Customer, {
 			foreignKey: 'customerId',
 			as: 'customer'
+		});
+    this.belongsTo(models.Customer, {
+			foreignKey: 'companionId',
+			as: 'companion'
 		});
 	}
 
 	static config(sequelize) {
 		return {
 			sequelize,
-			tableName: BOOKING_CUSTOMERS_TABLE,
-			modelName: 'BookingCustomers',
+			tableName: COMPANIONS_X_CUSTOMERS_TABLE,
+			modelName: 'CompanionsXCustomers',
 			timestamps: false
 		}
 	}
 }
 
-module.exports = { BookingCustomers, BOOKING_CUSTOMERS_TABLE, BookingCustomersSchema };
+module.exports = { CompanionsXCustomers, COMPANIONS_X_CUSTOMERS_TABLE, CompanionsXCustomersSchema };
 

@@ -1,25 +1,29 @@
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
 
-class BookingCustomersService {
+class CompanionsXCustomersService {
 	constructor() {}
 
 	async find(id) {
 		try {
-			const customers = await models.BookingCustomers.findAll({
+			const customers = await models.CompanionsXCustomers.findAll({
 				where: {
-					travelId: id
+					customerId: id
 				},
 				include: [
 					{
 						model: models.Customer,
-						as: 'customer',
-						attributes: ['id', 'customerId', 'typeId', 'name', 'lastName', 'email', 'phone', 'city'],
+						as: 'companion',
+						attributes: ['id', 'customerId', 'typeId', 'name', 'lastName', 'email', 'phone', 'city', 'address', 'customerType'],
 						include: [{
 							model: models.TypeId,
 							as: 'type_id',
 							attributes: ['id', 'name'],
-						}],
+						},{
+              model: models.CustomerType,
+							as: 'customer_type',
+							attributes: ['id', 'name'],
+            }],
 					},
 				],
 			});
@@ -29,18 +33,9 @@ class BookingCustomersService {
 		}
 	}
 
-	async findOne(id) {
-		try {
-			const customer = await models.BookingCustomers.findByPk(id);
-			return customer;
-		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
-		}
-	}
-
 	async create(data) {
 		try {
-			const resp = await models.BookingCustomers.create(data);
+			const resp = await models.CompanionsXCustomers.create(data);
 			return resp;
 		} catch (error) {
 			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
@@ -58,4 +53,4 @@ class BookingCustomersService {
 	}
 }
 
-module.exports = BookingCustomersService;
+module.exports = CompanionsXCustomersService;

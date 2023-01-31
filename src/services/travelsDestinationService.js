@@ -9,7 +9,7 @@ class TravelsDestinationService {
 			const destinations = await models.TravelsDestination.findAll();
 			return destinations;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -22,7 +22,7 @@ class TravelsDestinationService {
 			}
 			return destination;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -31,7 +31,7 @@ class TravelsDestinationService {
 			const resp = await models.TravelsDestination.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -41,7 +41,7 @@ class TravelsDestinationService {
 			await destination.update(changes);
 			return destination;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -51,7 +51,7 @@ class TravelsDestinationService {
 			await destination.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 }

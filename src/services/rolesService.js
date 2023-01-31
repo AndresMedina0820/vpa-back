@@ -9,7 +9,7 @@ class RoleService {
 			const roles = await models.Role.findAll();
 			return roles;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -21,7 +21,7 @@ class RoleService {
 			}
 			return role;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -30,7 +30,7 @@ class RoleService {
 			const resp = await models.Role.create(data);
 			return resp;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -40,7 +40,7 @@ class RoleService {
 			await role.update(changes);
 			return role;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -50,7 +50,7 @@ class RoleService {
 			await role.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 }

@@ -14,7 +14,7 @@ class BusesService {
 			});
 			return buses;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -28,7 +28,7 @@ class BusesService {
 			}
 			return bus;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -37,7 +37,7 @@ class BusesService {
 			const response = await models.Bus.create(data);
 			return response;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error.original.detail}`);
+			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -47,7 +47,7 @@ class BusesService {
 			await bus.update(changes);
 			return bus;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida:  ${error.original.detail}`)
+			throw boom.badRequest(`Actualización fallida:  ${error?.original?.detail || error}`)
 		}
 	}
 
@@ -57,7 +57,7 @@ class BusesService {
 			await bus.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida:  ${error.original.detail}`)
+			throw boom.badRequest(`Eliminación fallida:  ${error?.original?.detail || error}`)
 		}
 	}
 }

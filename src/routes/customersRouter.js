@@ -7,7 +7,12 @@ const { createCustomerSchema, updateCustomerSchema, deleteCustomerSchema, getCus
 const service = new CustomersService();
 
 router.get('/', async (request, response) => {
-	const customers = await service.find();
+	let customers = []
+	if ( request?.query?.has_booking ) {
+		customers = await service.findNotBooking();
+	} else {
+		customers = await service.find(request.query);
+	}
 	response.status(201).json(customers);
 });
 

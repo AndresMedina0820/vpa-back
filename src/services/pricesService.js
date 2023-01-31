@@ -22,7 +22,7 @@ class PricesService {
 			});
 			return prices;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -43,7 +43,7 @@ class PricesService {
 			});
 			return prices;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error.original.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -71,7 +71,7 @@ class PricesService {
 			}
 			return price;
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail}`);
+			throw boom.clientTimeout(`Conexión fallida:  ${error?.original?.detail || error}}`);
 		}
 	}
 
@@ -80,7 +80,7 @@ class PricesService {
 			const res = await models.Prices.create(data);
 			return res;
 		} catch (error) {
-			throw boom.failedDependency(`Creación fallida: ${error}`);
+			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -90,7 +90,7 @@ class PricesService {
 			await price.update(changes);
 			return price;
 		} catch (error) {
-			throw boom.badRequest(`Actualización fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Actualización fallida: ${error?.original?.detail || error}`);
 		}
 	}
 
@@ -100,7 +100,7 @@ class PricesService {
 			await price.destroy();
 			return { id };
 		} catch (error) {
-			throw boom.badRequest(`Eliminación fallida: ${error.original.detail}`);
+			throw boom.badRequest(`Eliminación fallida: ${error?.original?.detail || error}`);
 		}
 	}
 }
