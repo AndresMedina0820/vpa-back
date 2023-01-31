@@ -13,6 +13,7 @@ const { TRAVEL_TABLE, TravelSchema } = require('../models/travelModel');
 const { PRICES_TABLE, PricesSchema } = require('../models/pricesModel');
 const { BOOKING_TABLE, BookingSchema } = require('../models/bookingModel');
 const { BOOKING_CUSTOMERS_TABLE, BookingCustomersSchema } = require('../models/bookingCustomersModel');
+const { COMPANIONS_X_CUSTOMERS_TABLE, CompanionsXCustomersSchema } = require('../models/companionsXCustomersModel');
 
 module.exports = {
 	async up (queryInterface) {
@@ -29,6 +30,7 @@ module.exports = {
 		await queryInterface.createTable(BOOKING_TABLE, BookingSchema);
 		await queryInterface.createTable(CUSTOMER_TABLE, CustomerSchema);
 		await queryInterface.createTable(BOOKING_CUSTOMERS_TABLE, BookingCustomersSchema);
+		await queryInterface.createTable(COMPANIONS_X_CUSTOMERS_TABLE, CompanionsXCustomersSchema);
 	},
 
 	async down (queryInterface) {
@@ -45,5 +47,6 @@ module.exports = {
 		await queryInterface.dropTable(CUSTOMER_TYPE_TABLE, CustomerTypeSchema);
 		await queryInterface.dropTable(TYPE_ID_TABLE, TypeIdSchema);
 		await queryInterface.dropTable(TRAVELS_DESTINATION_TABLE);
+		await queryInterface.dropTable(COMPANIONS_X_CUSTOMERS_TABLE, CompanionsXCustomersSchema);
 	}
 };
