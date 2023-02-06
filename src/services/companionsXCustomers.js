@@ -5,6 +5,7 @@ class CompanionsXCustomersService {
 	constructor() {}
 
 	async find(id) {
+    console.log(id)
 		try {
 			const customers = await models.CompanionsXCustomers.findAll({
 				where: {

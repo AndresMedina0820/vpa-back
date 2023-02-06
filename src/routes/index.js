@@ -7,6 +7,7 @@ const travelsRouter = require('./travelsRouter');
 const bookingsRouter = require('./bookingsRouter');
 const bookingCustomersRouter = require('./bookingCustomersRouter');
 const companionsXCustomersRouter = require('./companionsXCustomers');
+const excelController = require('../controllers/excelController');
 
 // Settings
 const travelsDestinationRouter = require('./settings/travelsDestinationRouter');
@@ -24,6 +25,7 @@ function routerApi(app) {
 	router.use('/buses', busesRouter);
 	router.use('/travels', travelsRouter);
 	router.use('/travels/', pricesRouter);
+  router.use('/travels/generate/xslx/:id', excelController.generateXLSX);
 	router.use('/bookings', bookingsRouter);
 	router.use('/bookings/customers', bookingCustomersRouter);
 	router.use('/bookings/customers/companions', companionsXCustomersRouter);
