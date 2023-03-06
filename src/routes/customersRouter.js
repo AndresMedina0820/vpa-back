@@ -8,10 +8,11 @@ const {
   deleteCustomerSchema,
   getCustomerSchema,
 } = require('../schemas/customersSchema');
+const { querySchema } = require('../schemas/querySchema');
 
 const service = new CustomersService();
 
-router.get('/', async (request, response) => {
+router.get('/', validatorHandler(querySchema, 'query'), async (request, response) => {
   let customers = [];
   if (request?.query?.has_booking) {
     customers = await service.findNotBooking();
@@ -41,8 +42,8 @@ router.post(
   async (request, response, next) => {
     try {
       const { body } = request;
-      await service.create(body);
-      response.status(201).json('¡Cliente creado!');
+      const customer = await service.create(body);
+      response.status(201).json([customer, '¡Cliente creado!']);
     } catch (error) {
       next(error);
     }

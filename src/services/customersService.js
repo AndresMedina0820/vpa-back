@@ -11,13 +11,28 @@ const _companionsXCustomersServices = new CompanionsXCustomersServices();
 class CustomersService {
   constructor() {}
 
-  async find() {
+  async find({ limit = 5, offset = 0, keyword = '' }) {
     try {
-      const customers = await models.Customer.findAll({
+      let options = {
+        where: {
+          [Sequelize.Op.or]: [
+            {
+              name: { [Sequelize.Op.iLike]: `%${keyword}%` },
+            },
+            {
+              lastName: { [Sequelize.Op.iLike]: `%${keyword}%` },
+            },
+          ],
+        },
         include: ['type_id', 'customer_type', 'in_booking'],
         order: [['id', 'DESC']],
-      });
-      return customers;
+        limit: limit,
+        offset: offset,
+      };
+
+      const customers = await models.Customer.findAll(options);
+      const count = await models.Customer.count();
+      return { customers: [...customers], count: count };
     } catch (error) {
       throw boom.clientTimeout(
         `Conexión fallida:  ${error?.original?.detail || error}`
@@ -87,15 +102,19 @@ class CustomersService {
 
   async delete(id) {
     try {
-      const isBookingCustomer = await _bookingCustomersServices.findOne(id);
-      const isBookingCompaions = await _companionsXCustomersServices.find(id);
-      if (!isBookingCustomer && !isBookingCompaions) {
-        const customer = await this.findOne(id);
-        await customer.destroy();
-        return { id };
-      } else {
-        throw boom.conflict('¡Este cliente está reservado en un viaje!');
-      }
+      // const isBookingCustomer = await _bookingCustomersServices.findOne(id);
+      // const isBookingCompaions = await _companionsXCustomersServices.find(id);
+
+      const customer = await this.findOne(id);
+      await customer.destroy();
+      return { id };
+      // if (!isBookingCustomer && !isBookingCompaions) {
+      //   const customer = await this.findOne(id);
+      //   await customer.destroy();
+      //   return { id };
+      // } else {
+      //   throw boom.conflict('¡Este cliente está reservado en un viaje!');
+      // }
     } catch (error) {
       throw boom.badRequest(
         `Eliminación fallida: ${error?.original?.detail || error}`
