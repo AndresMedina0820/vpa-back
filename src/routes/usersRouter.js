@@ -8,11 +8,12 @@ const {
   getUserSchema,
   updateUserSchema,
 } = require('../schemas/usersSchema');
+const { querySchema } = require('../schemas/querySchema');
 
 const service = new usersService();
 
-router.get('/', async (request, response) => {
-  const users = await service.find();
+router.get('/', validatorHandler(querySchema), async (request, response) => {
+  const users = await service.find(request.query);
   response.status(201).json(users);
 });
 
@@ -22,8 +23,8 @@ router.get(
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      const user = await service.findOne(parseInt(id));
-      response.status(201).json(user);
+      const users = await service.findOne(parseInt(id));
+      response.status(201).json(users);
     } catch (error) {
       next(error);
     }
@@ -36,8 +37,8 @@ router.post(
   async (request, response, next) => {
     try {
       const { body } = request;
-      await service.create(body);
-      response.status(201).json('¡Usuario creado!');
+      const user = await service.create(body);
+      response.status(201).json([user, '¡Usuario creado!']);
     } catch (error) {
       next(error);
     }

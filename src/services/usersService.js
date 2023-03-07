@@ -1,20 +1,38 @@
 const { models } = require('../libs/sequelize_connection');
+const { Sequelize } = require('sequelize');
 const boom = require('@hapi/boom');
 
 class UsersService {
 	constructor() {}
 
-	async find() {
+	async find({ limit = 5, offset = 0, keyword = '' }) {
 		try {
-			const users = await models.User.findAll({
-				include: ['type_id', 'role'],
+      let count;
+      let options = {
+        where: {
+          [Sequelize.Op.or]: [
+            {
+              name: { [Sequelize.Op.iLike]: `%${keyword}%` },
+            },
+            {
+              lastName: { [Sequelize.Op.iLike]: `%${keyword}%` },
+            },
+          ],
+        },
+        include: ['type_id', 'role'],
 				order: [
 					['id', 'DESC']
-				]
-			});
-			return users;
+				],
+        limit: limit,
+        offset: offset,
+      };
+
+			const users = await models.User.findAll(options);
+      count = await models.User.count(keyword ? options : null);
+
+      return { users: [...users], count: count };
 		} catch (error) {
-			throw boom.clientTimeout(`Conexión fallida: ${error?.original?.detail || error}}`);
+			throw boom.clientTimeout(`Conexión fallida: ${error}`);
 		}
 	}
 
