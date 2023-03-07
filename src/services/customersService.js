@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
 const { models } = require('../libs/sequelize_connection');
-const { Op } = require('sequelize');
 const boom = require('@hapi/boom');
 const BookingCustomersServices = require('./bookingCustomersService');
 const CompanionsXCustomersServices = require('./companionsXCustomers');
@@ -13,6 +12,7 @@ class CustomersService {
 
   async find({ limit = 5, offset = 0, keyword = '' }) {
     try {
+      let count;
       let options = {
         where: {
           [Sequelize.Op.or]: [
@@ -31,7 +31,8 @@ class CustomersService {
       };
 
       const customers = await models.Customer.findAll(options);
-      const count = await models.Customer.count();
+      count = await models.Customer.count(keyword ? options : null);
+
       return { customers: [...customers], count: count };
     } catch (error) {
       throw boom.clientTimeout(

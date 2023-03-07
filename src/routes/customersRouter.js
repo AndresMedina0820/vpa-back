@@ -28,8 +28,8 @@ router.get(
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      const customer = await service.findOne(parseInt(id));
-      response.status(201).json(customer);
+      const customers = await service.findOne(parseInt(id));
+      response.status(201).json(customers);
     } catch (error) {
       next(error);
     }
