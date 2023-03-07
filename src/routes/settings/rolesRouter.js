@@ -24,8 +24,8 @@ router.get('/:id', validatorHandler(getRoleSchema, 'params'), async (request, re
 router.post('/', validatorHandler(createRoleSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('Rol creado!');
+		const { dataValues } = await service.create(body);
+		response.status(201).json(['Rol creado!', dataValues]);
 	} catch (error) {
 		next(error);
 	}

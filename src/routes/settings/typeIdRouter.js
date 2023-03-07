@@ -24,8 +24,8 @@ router.get('/:id', validatorHandler(getTypeIdSchema, 'params'), async (request, 
 router.post('/', validatorHandler(createTypeIdSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('¡Tipo de Id creado!');
+		const { dataValues } = await service.create(body);
+		response.status(201).json(['¡Tipo de Id creado!', dataValues]);
 	} catch (error) {
 		next(error);
 	}

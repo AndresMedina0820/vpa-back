@@ -24,8 +24,8 @@ router.get('/:id', validatorHandler(getTypeCustomerSchema, 'params'), async (req
 router.post('/', validatorHandler(createTypeCustomerSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('¡Tipo de cliente creado!');
+		const { dataValues } = await service.create(body);
+		response.status(201).json(['¡Tipo de cliente creado!', dataValues]);
 	} catch (error) {
 		next(error);
 	}

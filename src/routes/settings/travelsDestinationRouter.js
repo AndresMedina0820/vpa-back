@@ -24,8 +24,8 @@ router.get('/:id', validatorHandler(getTravelsDestinationSchema, 'params'), asyn
 router.post('/', validatorHandler(createTravelsDestinationSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('¡Destino creado!');
+		const destination = await service.create(body);
+		response.status(201).json(['¡Destino creado!', destination]);
 	} catch (error) {
 		next(error);
 	}
