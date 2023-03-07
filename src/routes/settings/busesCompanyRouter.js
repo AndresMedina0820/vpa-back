@@ -24,8 +24,8 @@ router.get('/:id', validatorHandler(getBusesCompanySchema, 'params'), async (req
 router.post('/', validatorHandler(createBusesCompanySchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('¡Compañia creada!');
+		const company = await service.create(body);
+		response.status(201).json(['¡Compañia creada!', company]);
 	} catch (error) {
 		next(error);
 	}

@@ -8,11 +8,12 @@ const {
   getBusSchema,
   updateBusSchema,
 } = require('../schemas/busesSchema');
+const { querySchema } = require('../schemas/querySchema');
 
 const service = new BusesService();
 
-router.get('/', async (request, response) => {
-  const buses = await service.find();
+router.get('/', validatorHandler(querySchema), async (request, response) => {
+  const buses = await service.find(request.query);
   response.status(201).json(buses);
 });
 
