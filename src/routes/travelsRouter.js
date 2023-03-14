@@ -3,12 +3,12 @@ const router = express.Router();
 const travelsServices = require('../services/travelsService');
 const validatorHandler = require('../middlewares/validatorHandler');
 const { createTravelsSchema, deleteTravelsSchema, getTravelsSchema, updateTravelsSchema } = require('../schemas/travelsSchema');
-const PricesService = require("../services/pricesService");
+const { querySchema } = require('../schemas/querySchema');
 
 const service = new travelsServices();
 
-router.get('/' ,async (request, response) => {
-	const travels = await service.find();
+router.get('/', validatorHandler(querySchema) ,async (request, response) => {
+	const travels = await service.find(request.query);
 	response.status(201).json(travels);
 });
 
@@ -38,10 +38,8 @@ router.patch('/:id', validatorHandler(updateTravelsSchema, 'params'), async (req
 	try {
 		const { id } = request.params;
 		const { body } = request;
-		await service.update(id, body)
-		.then((res) => {
-			response.status(201).json([res.id,'¡Viaje actualizado!']);
-		});
+		const travel = await service.update(id, body);
+    response.status(201).json([travel,'¡Viaje actualizado!']);
 	} catch (error) {
 		next(error);
 	}

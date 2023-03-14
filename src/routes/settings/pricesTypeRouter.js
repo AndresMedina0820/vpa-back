@@ -24,8 +24,8 @@ router.get('/:id', validatorHandler(getPricesTypeSchema, 'params'), async (reque
 router.post('/', validatorHandler(createPricesTypeSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
-		await service.create(body);
-		response.status(201).json('¡Tipo de Precio creado!');
+		const price = await service.create(body);
+		response.status(201).json(['¡Tipo de Precio creado!', price]);
 	} catch (error) {
 		next(error);
 	}
@@ -35,8 +35,8 @@ router.patch('/:id', validatorHandler(updatePricesTypeSchema, 'params'), async (
 	try {
 		const { id } = request.params;
 		const { body } = request;
-		await service.update(id, body);
-		response.status(201).json('¡Tipo de Precio actualizado!');
+		const price = await service.update(id, body);
+		response.status(201).json([price, '¡Tipo de Precio actualizado!']);
 	} catch (error) {
 		next(error);
 	}
