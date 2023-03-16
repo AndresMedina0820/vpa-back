@@ -14,11 +14,7 @@ const service = new CustomersService();
 
 router.get('/', validatorHandler(querySchema, 'query'), async (request, response) => {
   let customers = [];
-  if (request?.query?.has_booking) {
-    customers = await service.findNotBooking();
-  } else {
-    customers = await service.find(request.query);
-  }
+  customers = await service.find(request.query);
   response.status(201).json(customers);
 });
 
