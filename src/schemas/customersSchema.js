@@ -11,6 +11,7 @@ const email = Joi.string().email();
 const phone = Joi.string();
 const city = Joi.string();
 const address = Joi.string();
+const travelId = Joi.number().integer();
 const customerType = Joi.number().integer();
 
 const createCustomerSchema = Joi.object({
@@ -40,6 +41,7 @@ const updateCustomerSchema = Joi.object({
 	city: city,
 	address: address,
 	customerType: customerType,
+  travelId: travelId,
 });
 
 const deleteCustomerSchema = Joi.object({

@@ -1,11 +1,6 @@
 const { Sequelize } = require('sequelize');
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
-const BookingCustomersServices = require('./bookingCustomersService');
-const CompanionsXCustomersServices = require('./companionsXCustomers');
-
-const _bookingCustomersServices = new BookingCustomersServices();
-const _companionsXCustomersServices = new CompanionsXCustomersServices();
 
 class CustomersService {
   constructor() {}
@@ -24,7 +19,7 @@ class CustomersService {
             },
           ],
         },
-        include: ['type_id', 'customer_type', 'in_booking'],
+        include: ['type_id', 'customer_type', 'travel_id'],
         order: [['id', 'DESC']],
         limit: limit,
         offset: offset,
@@ -44,7 +39,7 @@ class CustomersService {
   async findOne(id) {
     try {
       const customer = await models.Customer.findByPk(id, {
-        include: ['type_id', 'customer_type', 'in_booking'],
+        include: ['type_id', 'customer_type', 'travel_id'],
       });
       if (!customer) {
         throw boom.notFound('Cliente no encontrado');
@@ -53,6 +48,21 @@ class CustomersService {
     } catch (error) {
       throw boom.clientTimeout(
         `Conexión fallida:  ${error?.original?.detail || error}}`
+      );
+    }
+  }
+
+  async getCount(id) {
+    try {
+      const count = await models.Customer.count({
+        where: {
+          travelId: id
+        },
+      });
+      return count;
+    } catch (error) {
+      throw boom.clientTimeout(
+        `Conexión fallida:  ${error?.original?.detail || error}`
       );
     }
   }

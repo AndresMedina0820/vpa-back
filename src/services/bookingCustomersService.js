@@ -1,6 +1,8 @@
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
 const { Sequelize, Op } = require('sequelize');
+const CustomersService = require('./customersService');
+const _customersService = new CustomersService();
 class BookingCustomersService {
   constructor() {}
 
@@ -63,7 +65,7 @@ class BookingCustomersService {
             ),
           },
         },
-        include: ['type_id', 'customer_type', 'in_booking'],
+        include: ['type_id', 'customer_type', 'travel_id'],
         order: [['id', 'DESC']],
       });
       return customers;
@@ -77,6 +79,7 @@ class BookingCustomersService {
   async create(data) {
     try {
       const resp = await models.BookingCustomers.create(data);
+      await _customersService.update(resp.customerId, { travelId: resp.travelId });
       return resp;
     } catch (error) {
       throw boom.failedDependency(

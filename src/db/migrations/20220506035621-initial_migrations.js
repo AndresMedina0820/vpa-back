@@ -11,7 +11,6 @@ const { TRAVELS_DESTINATION_TABLE, TravelsDestinationSchema } = require('../mode
 const { PRICES_TYPE_TABLE, PricesTypeSchema } = require('../models/pricesTypeModel');
 const { TRAVEL_TABLE, TravelSchema } = require('../models/travelModel');
 const { PRICES_TABLE, PricesSchema } = require('../models/pricesModel');
-const { BOOKING_TABLE, BookingSchema } = require('../models/bookingModel');
 const { BOOKING_CUSTOMERS_TABLE, BookingCustomersSchema } = require('../models/bookingCustomersModel');
 const { COMPANIONS_X_CUSTOMERS_TABLE, CompanionsXCustomersSchema } = require('../models/companionsXCustomersModel');
 
@@ -27,7 +26,6 @@ module.exports = {
 		await queryInterface.createTable(PRICES_TYPE_TABLE, PricesTypeSchema);
 		await queryInterface.createTable(TRAVEL_TABLE, TravelSchema);
 		await queryInterface.createTable(PRICES_TABLE, PricesSchema);
-		await queryInterface.createTable(BOOKING_TABLE, BookingSchema);
 		await queryInterface.createTable(CUSTOMER_TABLE, CustomerSchema);
 		await queryInterface.createTable(BOOKING_CUSTOMERS_TABLE, BookingCustomersSchema);
 		await queryInterface.createTable(COMPANIONS_X_CUSTOMERS_TABLE, CompanionsXCustomersSchema);
@@ -40,7 +38,6 @@ module.exports = {
 		await queryInterface.dropTable(ROLE_TABLE, RoleSchema);
 		await queryInterface.dropTable(CUSTOMER_TABLE, CustomerSchema);
 		await queryInterface.dropTable(BOOKING_CUSTOMERS_TABLE, BookingCustomersSchema);
-		await queryInterface.dropTable(BOOKING_TABLE, BookingSchema);
 		await queryInterface.dropTable(TRAVEL_TABLE, TravelSchema);
 		await queryInterface.dropTable(BUS_TABLE, BusSchema);
 		await queryInterface.dropTable(COMPANY_TABLE, CompanySchema);

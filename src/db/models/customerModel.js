@@ -1,7 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { TYPE_ID_TABLE } = require('./typeIdModel');
 const { CUSTOMER_TYPE_TABLE } = require('../models/customerTypeModel');
-const { BOOKING_TABLE } = require('../models/bookingModel');
+const { TRAVEL_TABLE } = require('../models/travelModel');
 
 const CUSTOMER_TABLE = 'customers';
 
@@ -76,12 +76,12 @@ const CustomerSchema = {
 		onUpdate: 'CASCADE',
 		onDelete: 'SET NULL'
 	},
-	inBooking: {
+	travelId: {
 		allowNull: true,
 		type: DataTypes.INTEGER,
-		field: 'in_booking',
+		field: 'travel_id',
 		references: {
-			model: BOOKING_TABLE,
+			model: TRAVEL_TABLE,
 			key: 'id'
 		},
 		onUpdate: 'CASCADE',
@@ -110,9 +110,9 @@ class Customer extends Model {
 			foreignKey: 'customerType',
 			as: 'customer_type'
 		});
-		this.belongsTo(models.Booking, {
-			foreignKey: 'inBooking',
-			as: 'in_booking'
+		this.belongsTo(models.Travel, {
+			foreignKey: 'travelId',
+			as: 'travel_id'
 		});
 	}
 

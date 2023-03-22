@@ -16,7 +16,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 0,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 393547,
 			"name": "Dylan",
@@ -30,7 +30,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 0,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		},
 		{
 			"customer_id": 981060,
@@ -45,7 +45,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 85828,
 			"name": "Loren",
@@ -59,7 +59,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 0,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 754670,
 			"name": "Heidie",
@@ -73,7 +73,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 0,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 314858,
 			"name": "Richy",
@@ -87,7 +87,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 1,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 246716,
 			"name": "Stacee",
@@ -101,7 +101,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 0,
 			"customer_type": 0,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 352757,
 			"name": "Gwynne",
@@ -115,7 +115,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 270937,
 			"name": "Lazar",
@@ -129,7 +129,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 2,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		}, {
 			"customer_id": 614830,
 			"name": "Rachelle",
@@ -143,7 +143,7 @@ module.exports = {
 			"created_at": "09/05/2022",
 			"type_id": 1,
 			"customer_type": 1,
-			"in_booking": null
+			"travel_id": null
 		}]);
 	},
 

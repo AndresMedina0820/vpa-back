@@ -19,7 +19,6 @@ router.get('/:customerId', validatorHandler(getCompanionIdSchema, 'params'), asy
 router.post('/', validatorHandler(createCompanionIdSchema, 'body'), async (request, response, next) => {
 	try {
     const { body } = request;
-    console.log("==================", body, "==================")
 		await service.create(body);
 		response.status(201).json('¡Acompañante creado!');
 	} catch (error) {

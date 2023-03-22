@@ -1,5 +1,7 @@
 const { models } = require('../libs/sequelize_connection');
 const boom = require('@hapi/boom');
+const CustomersService = require('./customersService');
+const _customersService = new CustomersService();
 
 class CompanionsXCustomersService {
 	constructor() {}
@@ -37,6 +39,8 @@ class CompanionsXCustomersService {
 	async create(data) {
 		try {
 			const resp = await models.CompanionsXCustomers.create(data);
+      const customer = await _customersService.findOne(resp.companionId);
+      await _customersService.update(customer.id, { travelId: data.travelId });
 			return resp;
 		} catch (error) {
 			throw boom.failedDependency(`Creación fallida: ${error?.original?.detail || error}`);
