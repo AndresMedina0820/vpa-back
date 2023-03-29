@@ -6,7 +6,7 @@ const typeId = Joi.number().integer();
 const name = Joi.string().max(255);
 const lastName = Joi.string().max(255);
 const email = Joi.string().email().max(255);
-const picture = Joi.string();
+const picture = Joi.optional();
 const password = Joi.string().max(15);
 const roleId = Joi.number().integer();
 

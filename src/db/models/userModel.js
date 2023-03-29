@@ -47,7 +47,7 @@ const UserSchema = {
 	},
 	picture: {
 		allowNull: true,
-		type: DataTypes.BLOB
+		type: DataTypes.STRING
 	},
 	roleId: {
 		allowNull: false,

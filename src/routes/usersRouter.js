@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersService = require('../services/usersService');
 const validatorHandler = require('../middlewares/validatorHandler');
+const { uploadStrategy } = require('../middlewares/uploadMedia.handler');
 const {
   createUserSchema,
   deleteUserSchema,
@@ -9,7 +10,6 @@ const {
   updateUserSchema,
 } = require('../schemas/usersSchema');
 const { querySchema } = require('../schemas/querySchema');
-
 const service = new usersService();
 
 router.get('/', validatorHandler(querySchema), async (request, response) => {
@@ -23,8 +23,8 @@ router.get(
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      const users = await service.findOne(parseInt(id));
-      response.status(201).json(users);
+      const user = await service.findOne(parseInt(id));
+      response.status(201).json(user);
     } catch (error) {
       next(error);
     }
@@ -39,6 +39,21 @@ router.post(
       const { body } = request;
       const user = await service.create(body);
       response.status(201).json([user, '¡Usuario creado!']);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/upload/:id',
+  uploadStrategy,
+  async (request, response, next) => {
+    try {
+      const { file } = request;
+      const { id } = request.params;
+      const resp = await service.upload(file, id);
+      response.status(201).json(resp);
     } catch (error) {
       next(error);
     }
