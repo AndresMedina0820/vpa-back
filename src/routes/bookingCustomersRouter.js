@@ -9,15 +9,14 @@ const {
 
 const service = new bookingCustomersService();
 
-router.get('/:id', async (request, response) => {
-  const { id } = request.params;
-  const customers = await service.find(id);
+router.get('/', async (request, response) => {
+  const customers = await service.findNotBooking();
   response.status(201).json(customers);
 });
 
-router.get('/', async (request, response) => {
+router.get('/:id', async (request, response) => {
   const { id } = request.params;
-  const customers = await service.findNotBooking(id);
+  const customers = await service.find(id);
   response.status(201).json(customers);
 });
 

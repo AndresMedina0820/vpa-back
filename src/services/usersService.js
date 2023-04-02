@@ -7,6 +7,7 @@ const {
   deleteBlob,
 } = require('../controllers/blobService');
 const { deleteFileTemp } = require('../controllers/deleteFilesTemp');
+const containerName = 'profiles';
 
 class UsersService {
   constructor() {}
@@ -27,8 +28,6 @@ class UsersService {
         },
         include: ['type_id', 'role'],
         order: [['id', 'DESC']],
-        limit: limit,
-        offset: offset,
       };
 
       const users = await models.User.findAll(options);
@@ -59,16 +58,13 @@ class UsersService {
 
   async upload(file, id) {
     try {
-      const containerName = 'profiles';
       const name = getBlobName(file.originalname);
       const path = file.path;
       let urlImage = '';
       const user = await this.findOne(id);
-      console.log("Upload", user);
 
       if (user.picture) {
-        console.log('ENTRREEEE');
-        deleteBlob(user.picture, 'profiles');
+        deleteBlob(user.picture, containerName);
       }
 
       blobService.createBlockBlobFromLocalFile(
@@ -87,7 +83,6 @@ class UsersService {
       );
 
       urlImage = blobService.getUrl(containerName, name);
-      console.log('urlImage', urlImage);
       const data = await this.update(id, { picture: urlImage });
       if (data) {
         deleteFileTemp(path);
@@ -128,7 +123,7 @@ class UsersService {
     try {
       const user = await this.findOne(id);
       const { picture } = user;
-      if (deleteBlob(picture, 'profiles')) {
+      if (deleteBlob(picture, containerName)) {
         await user.destroy();
         return { id };
       }

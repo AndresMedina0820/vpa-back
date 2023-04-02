@@ -8,9 +8,8 @@ const getBlobName = (originalName) => {
 };
 
 const deleteBlob = (pictureUrl, containerName) => {
-  const index = pictureUrl.indexOf(`${containerName}/`) + 9;
-  const nameImage = pictureUrl.substring(index);
-  console.log('nameImage======', nameImage);
+  const splitResult = pictureUrl.split(`${containerName}/`);
+  const nameImage = splitResult[1];
 
   blobService.deleteBlobIfExists(containerName, nameImage, (err) => {
     if (err) {

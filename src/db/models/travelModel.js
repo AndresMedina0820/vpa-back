@@ -52,7 +52,13 @@ const TravelSchema = {
 	},
 	picture: {
 		allowNull: true,
-		type: DataTypes.BLOB
+		type: DataTypes.STRING
+	},
+  isPublished: {
+		allowNull: false,
+		type: DataTypes.BOOLEAN,
+		defaultValue: false,
+		field: 'is_published'
 	},
 	createdAt: {
 		allowNull: false,
