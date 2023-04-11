@@ -72,24 +72,13 @@ router.get(
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      const xlsxFile = await excelController.generateXLSX(id);
-      // response.status(200).download(xlsxFile);
+      const xlsxFile = await excelController.generateXLSX(id, response);
 
       // Leer el contenido del archivo
-      const fileContent = fs.readFileSync(xlsxFile);
-
-      // Establecer los encabezados de la respuesta
-      response.setHeader(
-        'Content-Type',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-      );
-      response.setHeader(
-        'Content-Disposition',
-        'attachment; filename=listadoViaje.xlsx'
-      );
+      const fileContent = fs.readFileSync(xlsxFile, { encoding: 'base64' });
 
       // Enviar el contenido del archivo como una respuesta HTTP
-      response.send(xlsxFile);
+      response.send(fileContent);
       deleteFileTemp(xlsxFile);
     } catch (error) {
       next(error);

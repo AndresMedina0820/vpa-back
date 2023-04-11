@@ -18,7 +18,7 @@ getData = async (id) => {
 };
 
 getDataCompanions = async (customerId) => {
-  const companions = await _companionsXCustomers.find(customerId);
+  const companions = await _companionsXCustomers.findByCustomer(customerId);
   const companionsData = companions.map(
     (companion) => companion.dataValues.companion
   );
