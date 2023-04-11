@@ -4,10 +4,10 @@ const { CUSTOMER_TYPE_TABLE } = require('../models/customerTypeModel');
 module.exports = {
 	async up (queryInterface) {
 		await queryInterface.bulkInsert(CUSTOMER_TYPE_TABLE, [{
-			id: 0,
+			id: 1,
 			name: 'Interno'
 		}, {
-			id: 1,
+			id: 2,
 			name: 'Externo'
 		}]);
 	},

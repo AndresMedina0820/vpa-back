@@ -15,7 +15,7 @@ module.exports = {
 			"address": "95 Debra Center",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 0,
+			"customer_type": 1,
 			"travel_id": null
 		}, {
 			"customer_id": 393547,
@@ -28,7 +28,7 @@ module.exports = {
 			"city": "Akkol",
 			"address": "5 Pankratz Park",
 			"created_at": "09/05/2022",
-			"type_id": 0,
+			"type_id": 1,
 			"customer_type": 1,
 			"travel_id": null
 		},
@@ -57,7 +57,7 @@ module.exports = {
 			"city": "Saint-Ouen",
 			"address": "7532 Hauk Pass",
 			"created_at": "09/05/2022",
-			"type_id": 0,
+			"type_id": 1,
 			"customer_type": 1,
 			"travel_id": null
 		}, {
@@ -72,7 +72,7 @@ module.exports = {
 			"address": "37 Steensland Pass",
 			"created_at": "09/05/2022",
 			"type_id": 2,
-			"customer_type": 0,
+			"customer_type": 1,
 			"travel_id": null
 		}, {
 			"customer_id": 314858,
@@ -99,8 +99,8 @@ module.exports = {
 			"city": "Ārt Khwājah",
 			"address": "1 8th Place",
 			"created_at": "09/05/2022",
-			"type_id": 0,
-			"customer_type": 0,
+			"type_id": 1,
+			"customer_type": 1,
 			"travel_id": null
 		}, {
 			"customer_id": 352757,

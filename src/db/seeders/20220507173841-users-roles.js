@@ -6,13 +6,13 @@ const { ROLE_TABLE } = require('../models/roleModel');
 module.exports = {
 	async up (queryInterface) {
 		await queryInterface.bulkInsert(ROLE_TABLE, [{
-			id: 0,
+			id: 1,
 			name: 'Asesor'
 		}, {
-			id: 1,
+			id: 2,
 			name: 'Programador'
 		}, {
-			id: 2,
+			id: 3,
 			name: 'Administrador'
 		}]);
 
@@ -24,11 +24,11 @@ module.exports = {
 			"email": "mellif0@yellowbook.com",
 			"password": "UJsNlp4E9vIk",
 			"picture": "",
-			"role": 0,
+			"role": 3,
 			"created_at": "02/03/2022"
 		}, {
 			"user_id": 887140,
-			"type_id": 0,
+			"type_id": 1,
 			"name": "Hanan",
 			"last_name": "Tebbutt",
 			"email": "htebbutt1@alibaba.com",
@@ -64,17 +64,17 @@ module.exports = {
 			"email": "ebaggarley4@engadget.com",
 			"password": "foeVLuXsNeH",
 			"picture": "",
-			"role": 0,
+			"role": 1,
 			"created_at": "11/06/2021"
 		}, {
 			"user_id": 960867,
-			"type_id": 0,
+			"type_id": 1,
 			"name": "Thaddus",
 			"last_name": "Spellesy",
 			"email": "tspellesy5@google.com.hk",
 			"password": "PJi0cK18Rb",
 			"picture": "",
-			"role": 0,
+			"role": 1,
 			"created_at": "04/01/2022"
 		}, {
 			"user_id": 971953,
@@ -88,7 +88,7 @@ module.exports = {
 			"created_at": "06/02/2022"
 		}, {
 			"user_id": 321585,
-			"type_id": 0,
+			"type_id": 1,
 			"name": "Ekaterina",
 			"last_name": "Mullard",
 			"email": "emullard7@bloglines.com",
@@ -104,7 +104,7 @@ module.exports = {
 			"email": "avanderkrui8@imageshack.us",
 			"password": "uDMrBGYnQoIO",
 			"picture": "",
-			"role": 0,
+			"role": 1,
 			"created_at": "02/03/2022"
 		}, {
 			"user_id": 649979,

@@ -4,13 +4,13 @@ const { TYPE_ID_TABLE } = require('../models/typeIdModel');
 module.exports = {
 	async up (queryInterface) {
 		await queryInterface.bulkInsert(TYPE_ID_TABLE, [{
-			id: 0,
+			id: 1,
 			name: 'CC'
 		}, {
-			id: 1,
+			id: 2,
 			name: 'TI'
 		}, {
-			id: 2,
+			id: 3,
 			name: 'Registro Civil'
 		}]);
 	},
