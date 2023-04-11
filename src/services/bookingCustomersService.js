@@ -8,7 +8,7 @@ class BookingCustomersService {
 
   async find(id) {
     try {
-      const customers = await models.BookingCustomers.findAll({
+      const options = {
         where: {
           travelId: id,
         },
@@ -22,6 +22,8 @@ class BookingCustomersService {
               'typeId',
               'name',
               'lastName',
+              'dateBirth',
+              'isChild',
               'email',
               'phone',
               'city',
@@ -35,7 +37,9 @@ class BookingCustomersService {
             ],
           },
         ],
-      });
+      };
+
+      const customers = await models.BookingCustomers.findAll(options);
       return customers;
     } catch (error) {
       throw boom.clientTimeout(
@@ -46,7 +50,11 @@ class BookingCustomersService {
 
   async findOne(id) {
     try {
-      const customer = await models.BookingCustomers.findByPk(id);
+      const customer = await models.BookingCustomers.findAll({
+        where: {
+          customerId: id,
+        },
+      });
       return customer;
     } catch (error) {
       throw boom.clientTimeout(
@@ -91,8 +99,13 @@ class BookingCustomersService {
   async delete(id) {
     try {
       const customer = await this.findOne(id);
-      await customer.destroy();
-      return { id };
+      if (customer) {
+        await _customersService.update(customer[0]?.dataValues?.customerId, { travelId: null });
+        await models.BookingCustomers.destroy({
+          where: { customerId: id },
+        });
+        return { id };
+      }
     } catch (error) {
       throw boom.badRequest(
         `Eliminación fallida: ${error?.original?.detail || error}`

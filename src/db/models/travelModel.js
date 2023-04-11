@@ -55,7 +55,7 @@ const TravelSchema = {
 		type: DataTypes.STRING
 	},
   isPublished: {
-		allowNull: false,
+		allowNull: true,
 		type: DataTypes.BOOLEAN,
 		defaultValue: false,
 		field: 'is_published'

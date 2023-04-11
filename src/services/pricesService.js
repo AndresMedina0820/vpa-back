@@ -27,7 +27,6 @@ class PricesService {
 	}
 
 	async findByTravel(travelId) {
-		console.log(travelId);
 		try {
 			const prices = await models.Prices.findAll({
 				where: {

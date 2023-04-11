@@ -8,15 +8,17 @@ const getBlobName = (originalName) => {
 };
 
 const deleteBlob = (pictureUrl, containerName) => {
-  const splitResult = pictureUrl.split(`${containerName}/`);
-  const nameImage = splitResult[1];
+  if (pictureUrl) {
+    const splitResult = pictureUrl.split(`${containerName}/`);
+    const nameImage = splitResult[1];
 
-  blobService.deleteBlobIfExists(containerName, nameImage, (err) => {
-    if (err) {
-      console.error(err);
-      throw boom.clientTimeout(`Error al eliminar imagen`);
-    }
-  });
+    blobService.deleteBlobIfExists(containerName, nameImage, (err) => {
+      if (err) {
+        console.error(err);
+        throw boom.clientTimeout(`Error al eliminar imagen`);
+      }
+    });
+  }
 
   return true;
 };

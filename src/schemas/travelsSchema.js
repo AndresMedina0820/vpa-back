@@ -7,7 +7,7 @@ const departureDate = Joi.date();
 const busId = Joi.number().integer();
 const departureLocation = Joi.string();
 const observations = Joi.string();
-const picture = Joi.string();
+const picture = Joi.optional();
 const isPublished = Joi.boolean();
 
 const createTravelsSchema = Joi.object({
@@ -18,7 +18,7 @@ const createTravelsSchema = Joi.object({
 	departureLocation: departureLocation.required(),
 	observations: observations,
 	picture: picture,
-  isPublished: isPublished.required(),
+  isPublished: isPublished,
 });
 
 const updateTravelsSchema = Joi.object({
@@ -49,9 +49,14 @@ const getTravelsSchema = Joi.object({
   isPublished: isPublished
 });
 
+const exportTravelsSchema = Joi.object({
+	id: id.required(),
+});
+
 module.exports = {
 	createTravelsSchema,
 	updateTravelsSchema,
 	deleteTravelsSchema,
-	getTravelsSchema
+	getTravelsSchema,
+  exportTravelsSchema
 };

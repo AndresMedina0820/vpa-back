@@ -4,11 +4,8 @@ const usersRouter = require('./usersRouter');
 const busesRouter = require('./busesRouter');
 const pricesRouter = require('./pricesRouter');
 const travelsRouter = require('./travelsRouter');
-const bookingsRouter = require('./bookingsRouter');
 const bookingCustomersRouter = require('./bookingCustomersRouter');
 const companionsXCustomersRouter = require('./companionsXCustomers');
-const excelController = require('../controllers/excelController');
-const totalCustomersByTravel = require('../controllers/totalCustomersByTravel');
 
 // Settings
 const travelsDestinationRouter = require('./settings/travelsDestinationRouter');
@@ -25,9 +22,7 @@ function routerApi(app) {
 	router.use('/users', usersRouter);
 	router.use('/buses', busesRouter);
 	router.use('/travels', travelsRouter);
-	router.use('/travels/total/:id', totalCustomersByTravel.getTotalCustomersByTravel);
 	router.use('/travels/', pricesRouter);
-  router.use('/travels/generate/xslx/:id', excelController.generateXLSX);
 	router.use('/bookings/customers', bookingCustomersRouter);
 	router.use('/bookings/customers/companions', companionsXCustomersRouter);
 	router.use('/settings/travels/destinations', travelsDestinationRouter);

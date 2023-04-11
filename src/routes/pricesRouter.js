@@ -13,16 +13,6 @@ router.get('/:travel_id/prices' ,async (request, response) => {
 	response.status(201).json(prices);
 });
 
-// router.get('/:id', validatorHandler(getPricesSchema, 'params'), async (request, response, next) => {
-// 	try {
-// 		const { id } = request.params;
-// 		const price = await service.findOne(parseInt(id));
-// 		response.status(201).json(price);
-// 	} catch (error) {
-// 		next(error);
-// 	}
-// });
-
 router.post('/:travel_id/prices', validatorHandler(createPricesSchema, 'body'), async (request, response, next) => {
 	try {
 		const { body } = request;
@@ -35,17 +25,6 @@ router.post('/:travel_id/prices', validatorHandler(createPricesSchema, 'body'), 
 		next(error);
 	}
 });
-
-// router.patch('/:travel_id/prices/:id', validatorHandler(updatePricesSchema, 'params'), async (request, response, next) => {
-// 	try {
-// 		const { id } = request.params;
-// 		const { body } = request;
-// 		await service.update(id, body);
-// 		response.status(201).json('¡Precio actualizado!');
-// 	} catch (error) {
-// 		next(error);
-// 	}
-// });
 
 router.delete('/:travel_id/prices/:id', validatorHandler(deletePricesSchema, 'params'), async (request, response, next) => {
 	try {

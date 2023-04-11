@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-exports.deleteFileTemp = async (path) => {
+deleteFileTemp = async (path) => {
   fs.unlink(path, function (err) {
     if (err) {
       console.log('Error al borrar archivo temporal:', err);
@@ -11,3 +11,5 @@ exports.deleteFileTemp = async (path) => {
     }
   });
 };
+
+module.exports = { deleteFileTemp };

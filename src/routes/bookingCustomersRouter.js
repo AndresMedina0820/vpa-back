@@ -40,8 +40,8 @@ router.delete(
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      await service.delete(id);
-      response.status(201).json('Cliente eliminado');
+      const customerId = await service.delete(id);
+      response.status(201).json(['Cliente eliminado', customerId]);
     } catch (error) {
       next(error);
     }
