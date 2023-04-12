@@ -15,6 +15,9 @@ if (config.isProd) {
 	}
 }
 
+console.log("==========================================options",options)
+console.log("==========================================dbUrl",config.dbUrl)
+
 const sequelize = new Sequelize(config.dbUrl, options);
 
 setupModels(sequelize);
