@@ -11,7 +11,7 @@ const config = {
 	dbPort: process.env.DB_PORT,
 	dbUrl: process.env.DB_URL,
   azureStorage: process.env.AZURE_STORAGE_CONNECTION_STRING,
-	apiKey: process.env.API_KEY
+	// apiKey: process.env.API_KEY
 };
 
 module.exports = { config };
