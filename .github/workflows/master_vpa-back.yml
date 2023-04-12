@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'vpa-back'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0390DA1A9D284711B3E0239716E99BF5 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D56A2D5501214E45BF671FAE2FFCA4CA }}
           package: .
