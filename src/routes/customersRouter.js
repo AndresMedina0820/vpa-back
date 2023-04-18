@@ -13,9 +13,15 @@ const { querySchema } = require('../schemas/querySchema');
 const service = new CustomersService();
 
 router.get('/', validatorHandler(querySchema, 'query'), async (request, response) => {
-  let customers = [];
-  customers = await service.find(request.query);
-  response.status(201).json(customers);
+  await service.find(request.query)
+  .then((resp) => {
+    const customers = resp || [];
+    response.status(201).json(customers);
+  })
+  .catch((err) => {
+    console.err(err);
+    response.status(500).json("Lo siento, ha habido un error en el servidor. Por favor, contacte al administrador. 😓");
+  })
 });
 
 router.get(

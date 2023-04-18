@@ -3,16 +3,15 @@ require('dotenv').config();
 console.log("...............PROCESSSS ENVVV...............", process.env);
 
 const config = {
-	env: process.env.NODE_ENV || 'development',
-	isProd: process.env.NODE_ENV === 'production',
+	env: process.env.CUSTOMCONNSTR_NODE_ENV || 'development',
+	isProd: process.env.CUSTOMCONNSTR_NODE_ENV === 'production',
 	port: process.env.PORT || '3005',
-	dbUser: process.env.POSTGRESQLCONNSTR_DB_USER,
-	dbPassword: process.env.POSTGRESQLCONNSTR_DB_PASSWORD,
-	dbHost: process.env.POSTGRESQLCONNSTR_DB_HOST,
-	dbName: process.env.POSTGRESQLCONNSTR_DB_NAME,
+	dbUser: process.env.POSTGRESQLCONNSTR_DB_USER || process.env.DB_USER,
+	dbPassword: process.env.POSTGRESQLCONNSTR_DB_PASSWORD || process.env.DB_PASSWORD,
+	dbHost: process.env.POSTGRESQLCONNSTR_DB_HOST || process.env.DB_HOST,
+	dbName: process.env.POSTGRESQLCONNSTR_DB_NAME || process.env.DB_NAME,
 	dbPort: process.env.DB_PORT || 5432,
-	// dbUrl: process.env.DB_URL,
-  azureStorage: process.env.AZURE_STORAGE_CONNECTION_STRING,
+  azureStorage: process.env.CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING || process.env.AZURE_STORAGE_CONNECTION_STRING,
 	// apiKey: process.env.API_KEY
 };
 

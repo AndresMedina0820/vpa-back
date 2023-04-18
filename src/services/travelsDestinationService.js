@@ -16,7 +16,6 @@ class TravelsDestinationService {
 	async findOne(id) {
 		try {
 			const destination = await models.TravelsDestination.findByPk(id);
-			console.log("destination: ", destination, typeof destination)
 			if (!destination) {
 				throw boom.notFound('Destino no encontrado');
 			}
