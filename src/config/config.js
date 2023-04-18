@@ -11,7 +11,9 @@ const config = {
 	dbHost: process.env.POSTGRESQLCONNSTR_DB_HOST || process.env.DB_HOST,
 	dbName: process.env.POSTGRESQLCONNSTR_DB_NAME || process.env.DB_NAME,
 	dbPort: process.env.DB_PORT || 5432,
-  azureStorage: process.env.CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING || process.env.AZURE_STORAGE_CONNECTION_STRING,
+  // azureStorage: process.env.CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING || process.env.AZURE_STORAGE_CONNECTION_STRING,
+  azureStorageAccount: process.env.CUSTOMCONNSTR_AZURE_ACCOUNT || process.env.AZURE_ACCOUNT,
+  azureStoragePassword: process.env.CUSTOMCONNSTR_AZURE_PASSWORD || process.env.AZURE_PASSWORD,
 	// apiKey: process.env.API_KEY
 };
 
