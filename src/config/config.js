@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-// console.log("...............PROCESSSS ENVVV...............", process.env);
+console.log("...............PROCESSSS ENVVV...............", process.env);
 
 const config = {
 	env: process.env.CUSTOMCONNSTR_NODE_ENV || 'development',
