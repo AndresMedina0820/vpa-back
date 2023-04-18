@@ -1,6 +1,11 @@
 const azureStorage = require('azure-storage');
+const { config } = require('../config/config');
 
-const blobService = azureStorage.createBlobService(); // Trae la variable del .env y se conecta con los servicios de Azure
+// Trae la variable del .env y se conecta con los servicios de Azure
+const blobService = azureStorage.createBlobService(
+  config.azureStorageAccount,
+  config.azureStoragePassword
+);
 
 const getBlobName = (originalName) => {
   const identifier = Math.random().toString().replace(/0\./, ''); // Quita el 0. del inicio
