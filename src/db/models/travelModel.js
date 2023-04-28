@@ -29,6 +29,7 @@ const TravelSchema = {
 	departureDate: {
 		allowNull: false,
 		type: DataTypes.DATE,
+    timestamps: true,
 		field: 'departure_date'
 	},
 	busId : {
