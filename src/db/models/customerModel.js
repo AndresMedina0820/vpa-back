@@ -41,6 +41,7 @@ const CustomerSchema = {
 	dateBirth: {
 		allowNull: false,
 		type: DataTypes.DATE,
+    timestamps: true,
 		field: 'date_birth'
 	},
 	isChild: {

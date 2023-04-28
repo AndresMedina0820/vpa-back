@@ -23,7 +23,7 @@ const PricesSchema = {
 		onDelete: 'SET NULL'
 	},
 	travelId: {
-		allowNull: false,
+		allowNull: true,
 		type: DataTypes.INTEGER,
 		field: 'travel_id',
 		references: {
