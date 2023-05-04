@@ -115,7 +115,7 @@ class TravelsService {
         path,
         (err) => {
           if (err) {
-            console.error(err);
+            console.log(err);
             deleteFileTemp(path);
             throw boom.clientTimeout(
               `Error al guardar imagen: ${error?.original?.detail || error}`
@@ -204,7 +204,7 @@ class TravelsService {
       await models.Travel.destroy({ where: { id: travel.id } });
       return { id };
     } catch (error) {
-      console.error(error);
+      console.log(error);
       throw boom.badRequest(`Error al eliminar`);
     }
   }
