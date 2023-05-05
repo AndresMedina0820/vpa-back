@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 const config = {
-	env: process.env.CUSTOMCONNSTR_NODE_ENV || 'development',
 	isProd: process.env.CUSTOMCONNSTR_NODE_ENV === 'production',
+	env: process.env.CUSTOMCONNSTR_NODE_ENV || 'development',
 	port: process.env.PORT || '3005',
 	dbUser: process.env.POSTGRESQLCONNSTR_DB_USER || process.env.DB_USER,
 	dbPassword: process.env.POSTGRESQLCONNSTR_DB_PASSWORD || process.env.DB_PASSWORD,
@@ -14,5 +14,8 @@ const config = {
   azureStoragePassword: process.env.CUSTOMCONNSTR_AZURE_PASSWORD || process.env.AZURE_PASSWORD,
 	// apiKey: process.env.API_KEY
 };
+
+console.log("=======================is prod?", config.env)
+console.log("=======================CONFIG", config)
 
 module.exports = { config };
