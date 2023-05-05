@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log("...............PROCESSSS ENVVV...............", process.env);
-
 const config = {
 	env: process.env.CUSTOMCONNSTR_NODE_ENV || 'development',
 	isProd: process.env.CUSTOMCONNSTR_NODE_ENV === 'production',
@@ -16,7 +14,5 @@ const config = {
   azureStoragePassword: process.env.CUSTOMCONNSTR_AZURE_PASSWORD || process.env.AZURE_PASSWORD,
 	// apiKey: process.env.API_KEY
 };
-
-console.log("...............ENV...............", config);
 
 module.exports = { config };

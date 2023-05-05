@@ -184,7 +184,7 @@ makeXLSX = async (customers) => {
     workbook.write(pathExcel, function (err) {
       if (err) {
         // TODO: Cambiar por boom errors
-        console.error(err);
+        console.log(err);
         reject(err);
         return;
       } else {

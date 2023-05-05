@@ -73,7 +73,7 @@ class UsersService {
         path,
         (err) => {
           if (err) {
-            console.error(err);
+            console.log(err);
             deleteFileTemp(path);
             throw boom.clientTimeout(
               `Error al guardar imagen: ${error?.original?.detail || error}`

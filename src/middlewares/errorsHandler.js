@@ -1,5 +1,5 @@
 function logErrors(err, request, response, next) {
-	console.error("======================Log Error: ==========================", err);
+	console.log("======================Log Error: ==========================", err);
 	next(err);
 }
 

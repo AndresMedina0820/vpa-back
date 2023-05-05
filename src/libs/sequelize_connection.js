@@ -10,7 +10,7 @@ const options = {
 	logging: config.isProd ? true : false,
 }
 
-console.log("=======================is prod?", config.isProd)
+// console.log("=======================is prod?", config.isProd)
 
 if (config.isProd) {
 	options.dialectOptions = {
@@ -20,8 +20,8 @@ if (config.isProd) {
 	}
 }
 
-console.log("==========================================options",options)
-console.log("==========================================dbUrl", URI)
+// console.log("==========================================options",options)
+// console.log("==========================================dbUrl", URI)
 
 const sequelize = new Sequelize(URI, options);
 

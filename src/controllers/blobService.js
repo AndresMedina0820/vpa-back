@@ -16,7 +16,7 @@ const deleteBlob = (pictureUrl, containerName) => {
 
     blobService.deleteBlobIfExists(containerName, nameImage, (err) => {
       if (err) {
-        console.error(err);
+        console.log(err);
         throw boom.clientTimeout(`Error al eliminar imagen`);
       }
     });
