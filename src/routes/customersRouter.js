@@ -19,7 +19,7 @@ router.get('/', validatorHandler(querySchema, 'query'), async (request, response
     response.status(201).json(customers);
   })
   .catch((err) => {
-    console.err(err);
+    console.log(err);
     response.status(500).json("Lo siento, ha habido un error en el servidor. Por favor, contacte al administrador. 😓");
   })
 });
