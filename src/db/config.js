@@ -3,6 +3,8 @@ const { config } = require("../config/config");
 // URL de Conexion
 const URI = `postgres://${config.dbUser}:${config.dbPassword}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
+console.log(URI);
+
 module.exports = {
 	development: {
 		url: URI,
@@ -13,7 +15,7 @@ module.exports = {
 		dialect: 'postgres',
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: false
+        rejectUnauthorized: true
       },
       encrypt: true
     }
