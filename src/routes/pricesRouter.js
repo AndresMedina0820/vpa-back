@@ -9,8 +9,28 @@ const service = new pricesServices();
 
 router.get('/:travel_id/prices' ,async (request, response) => {
 	const travelId = request.params.travel_id;
-	const prices = await service.findByTravel(travelId);
-	response.status(201).json(prices);
+	service.findByTravel(travelId)
+  .then(resp => {
+    const prices = resp || [];
+    response.status(201).json(prices);
+  })
+  .catch((err) => {
+    console.log(err);
+    response.status(500).json("Lo siento, ha habido un error en el servidor. Por favor, contacte al administrador. 😓");
+  });
+});
+
+router.get('/:travel_id/pricesXTravel' ,async (request, response) => {
+	const travelId = request.params.travel_id;
+	await service.findByTravel(travelId)
+  .then(resp => {
+    const prices = resp || [];
+    response.status(201).json(prices);
+  })
+  .catch((err) => {
+    console.log(err);
+    response.status(500).json("Lo siento, ha habido un error en el servidor. Por favor, contacte al administrador. 😓");
+  });
 });
 
 router.post('/:travel_id/prices', validatorHandler(createPricesSchema, 'body'), async (request, response, next) => {
