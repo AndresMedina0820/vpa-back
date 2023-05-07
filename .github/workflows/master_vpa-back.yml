@@ -16,6 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
@@ -32,6 +40,15 @@ jobs:
         with:
           name: node-app
           path: .
+
+      - name: Cache artifact
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node-app
+          key: ${{ runner.os }}-node-app-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-app-
 
   deploy:
     runs-on: ubuntu-latest

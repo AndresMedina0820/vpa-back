@@ -1,23 +1,26 @@
-const { config } = require("../config/config");
+const { config } = require('../config/config');
 
 // URL de Conexion
 const URI = `postgres://${config.dbUser}:${config.dbPassword}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
-console.log(URI);
+let options = {};
 
-module.exports = {
-	development: {
-		url: URI,
-		dialect: 'postgres',
-	},
-	production: {
-		url: URI,
-		dialect: 'postgres',
+if (config.isProd) {
+  options = {
+    url: URI,
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true
+        rejectUnauthorized: true,
       },
-      encrypt: true
-    }
-	}
+      encrypt: true,
+    },
+  };
+} else {
+  options = {
+    url: URI,
+    dialect: 'postgres',
+  };
 }
+
+module.exports = { ...options };
