@@ -15,14 +15,11 @@ console.log("=======================is prod?", config.isProd)
 if (config.isProd) {
 	options.dialectOptions = {
 		ssl: {
-			rejectUnauthorized: false
+			rejectUnauthorized: true
 		},
     encrypt: true
 	}
 }
-
-// console.log("==========================================options",options)
-// console.log("==========================================dbUrl", URI)
 
 const sequelize = new Sequelize(URI, options);
 

@@ -15,7 +15,4 @@ const config = {
 	// apiKey: process.env.API_KEY
 };
 
-console.log("=======================is prod?", config.env)
-console.log("=======================CONFIG", config)
-
 module.exports = { config };
