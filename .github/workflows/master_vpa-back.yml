@@ -10,8 +10,41 @@ on:
   workflow_dispatch:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: npm install
+        run: npm install
+
+      - name: Build Docker image
+        run: docker build -t vpa-back .
+
+      - name: Push Docker image to registry
+        uses: docker/login-action@v1
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker tag vpa-back:latest docker.io/andresmedina0820/vpa-back:latest
+      - run: docker push docker.io/andresmedina0820/vpa-back:latest
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: node-app
+          path: .
+
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -22,12 +55,6 @@ jobs:
         with:
           name: node-app
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -35,4 +62,4 @@ jobs:
           app-name: 'vpa-back'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D56A2D5501214E45BF671FAE2FFCA4CA }}
-          package: .
+          images: 'docker.io/andresmedina0820/vpa-back:latest'
