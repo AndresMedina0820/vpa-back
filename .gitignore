@@ -217,6 +217,6 @@ postgres_data
 data_skeleton_post.json
 
 # Peacok
-.vscode/settings.json
+.vscode
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos

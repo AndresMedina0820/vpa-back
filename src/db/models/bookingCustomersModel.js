@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { TRAVEL_TABLE } = require('./travelModel');
-const {CUSTOMER_TABLE } = require('./customerModel')
+const { CUSTOMER_TABLE } = require('./customerModel');
+const { PRICES_TABLE } = require('./pricesModel');
 
 const BOOKING_CUSTOMERS_TABLE = 'booking_customers';
 
@@ -33,6 +34,29 @@ const BookingCustomersSchema = {
 		onUpdate: 'CASCADE',
 		onDelete: 'SET NULL'
 	},
+  priceId: {
+		allowNull: true,
+		type: DataTypes.INTEGER,
+		field: 'price_id',
+		references: {
+			model: PRICES_TABLE,
+			key: 'id'
+		},
+		onUpdate: 'CASCADE',
+		onDelete: 'SET NULL'
+	},
+  isPaid: {
+		allowNull: false,
+		field: 'is_paid',
+		type: DataTypes.BOOLEAN,
+		defaultValue: false
+	},
+  outstandingBalance: {
+		allowNull: true,
+    field: 'outstanding_balance',
+		type: DataTypes.INTEGER,
+		defaultValue: 0
+	},
 	createdAt: {
 		allowNull: false,
 		type: DataTypes.DATE,
@@ -55,6 +79,10 @@ class BookingCustomers extends Model {
 		this.belongsTo(models.Customer, {
 			foreignKey: 'customerId',
 			as: 'customer'
+		});
+		this.belongsTo(models.Prices, {
+			foreignKey: 'priceId',
+			as: 'price'
 		});
 	}
 

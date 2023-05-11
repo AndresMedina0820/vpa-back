@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { CUSTOMER_TABLE } = require('./customerModel')
+const { CUSTOMER_TABLE } = require('./customerModel');
+const { PRICES_TABLE } = require('./pricesModel');
 
 const COMPANIONS_X_CUSTOMERS_TABLE = 'companions_x_customers';
 
@@ -32,6 +33,29 @@ const CompanionsXCustomersSchema = {
 		onUpdate: 'CASCADE',
 		onDelete: 'SET NULL'
 	},
+  priceId: {
+		allowNull: true,
+		type: DataTypes.INTEGER,
+		field: 'price_id',
+		references: {
+			model: PRICES_TABLE,
+			key: 'id'
+		},
+		onUpdate: 'CASCADE',
+		onDelete: 'SET NULL'
+	},
+  isPaid: {
+		allowNull: true,
+		field: 'is_paid',
+		type: DataTypes.BOOLEAN,
+		defaultValue: false
+	},
+  outstandingBalance: {
+		allowNull: true,
+    field: 'outstanding_balance',
+		type: DataTypes.INTEGER,
+		defaultValue: 0
+	},
 	createdAt: {
 		allowNull: false,
 		type: DataTypes.DATE,
@@ -54,6 +78,10 @@ class CompanionsXCustomers extends Model {
     this.belongsTo(models.Customer, {
 			foreignKey: 'companionId',
 			as: 'companion'
+		});
+    this.belongsTo(models.Prices, {
+			foreignKey: 'priceId',
+			as: 'price'
 		});
 	}
 
