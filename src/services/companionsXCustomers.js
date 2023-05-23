@@ -113,6 +113,18 @@ class CompanionsXCustomersService {
     }
   }
 
+  async addPrice(id, changes) {
+    try {
+      const customer = await this.findByCompanion(id);
+      await models.CompanionsXCustomers.update(changes, {where: { id: customer[0]?.dataValues?.id }});
+      return customer;
+    } catch (error) {
+      throw boom.badRequest(
+        `Actualización fallida: ${error?.original?.detail || error}`
+      );
+    }
+  }
+
   async delete(id) {
     try {
       const data = await this.findByCompanion(id);

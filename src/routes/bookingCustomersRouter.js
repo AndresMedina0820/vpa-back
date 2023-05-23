@@ -4,6 +4,7 @@ const bookingCustomersService = require('../services/bookingCustomersService');
 const validatorHandler = require('../middlewares/validatorHandler');
 const {
   createBookingCustomersSchema,
+  updatePriceByBookingCustomersSchema,
   deleteBookingCustomersSchema,
 } = require('../schemas/bookingCustomersSchema');
 
@@ -28,6 +29,23 @@ router.post(
       const { body } = request;
       const customers = await service.create(body);
       response.status(201).json([customers, 'Cliente agregado correctamente']);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/:id/priceByBookingCustomer',
+  validatorHandler(updatePriceByBookingCustomersSchema, 'body'),
+  async (request, response, next) => {
+    try {
+      const { id } = request.params;
+      const { body } = request;
+      await service.addPrice(id, body)
+      .then((resp) => {
+        response.status(201).json([resp, 'Precio asignado correctamente']);
+      });
     } catch (error) {
       next(error);
     }

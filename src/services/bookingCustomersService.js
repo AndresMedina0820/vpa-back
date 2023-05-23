@@ -96,6 +96,18 @@ class BookingCustomersService {
     }
   }
 
+  async addPrice(id, changes) {
+    try {
+      const customer = await this.findOne(id);
+      await models.BookingCustomers.update(changes, {where: { id: customer[0]?.dataValues?.id }});
+      return customer;
+    } catch (error) {
+      throw boom.badRequest(
+        `Actualización fallida: ${error?.original?.detail || error}`
+      );
+    }
+  }
+
   async delete(id) {
     try {
       const customer = await this.findOne(id);

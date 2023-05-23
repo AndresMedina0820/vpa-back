@@ -20,10 +20,7 @@ const createCompanionIdSchema = Joi.object({
   outstandingBalance: outstandingBalance,
 });
 
-const updateCompanionIdSchema = Joi.object({
-  companionId: companionId.required(),
-  travelId: travelId.required(),
-  customerId: customerId,
+const updatePriceByBookingCustomersSchema = Joi.object({
   priceId: priceId,
   isPaid: isPaid,
   outstandingBalance: outstandingBalance,
@@ -36,6 +33,6 @@ const deleteCompanionIdSchema = Joi.object({
 module.exports = {
   getCompanionIdSchema,
   createCompanionIdSchema,
-  updateCompanionIdSchema,
+  updatePriceByBookingCustomersSchema,
   deleteCompanionIdSchema,
 };

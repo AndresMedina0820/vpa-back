@@ -24,7 +24,6 @@ function routerApi(app) {
 	router.use('/buses', busesRouter);
 	router.use('/travels', travelsRouter);
 	router.use('/travels/', pricesRouter);
-	router.use('/webpage/', webPageRouter);
 	router.use('/bookings/customers', bookingCustomersRouter);
 	router.use('/bookings/customers/companions', companionsXCustomersRouter);
 	router.use('/settings/travels/destinations', travelsDestinationRouter);
@@ -33,6 +32,7 @@ function routerApi(app) {
 	router.use('/settings/types/id', typeIdRouter);
 	router.use('/settings/types/customers', typeCustomerRouter);
 	router.use('/settings/roles', rolesRouter);
+	router.use('/webpage/', webPageRouter);
 }
 
 module.exports = routerApi;
